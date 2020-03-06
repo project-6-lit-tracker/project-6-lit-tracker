@@ -17,7 +17,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      books: [],
+      books: []
     }
   }
   
@@ -58,6 +58,12 @@ class App extends Component {
       console.log(result2);
 
     })
+
+    const dbRef = firebase.database().ref();
+
+    dbRef.on('value', (response) => {
+      console.log(response.val());
+    });
   }
 
   // paramsSerializer allows us to pass query params into axios call
@@ -66,7 +72,7 @@ class App extends Component {
     return (
       <div className="App">
         <ul>
-          {this.state.books.map((book) => {
+          {this.state.books.map((book) => {        
             return <li>{book}</li>
           })}
         </ul>

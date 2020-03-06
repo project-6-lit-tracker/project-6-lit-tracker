@@ -1,17 +1,18 @@
+// firebase.js
 import firebase from 'firebase';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBtLoVzO1Xn8IXq4f-lG6kG6eNvRTQ9Fmo",
-    authDomain: "project6-lit-tracker-second.firebaseapp.com",
-    databaseURL: "https://project6-lit-tracker-second.firebaseio.com",
-    projectId: "project6-lit-tracker-second",
-    storageBucket: "project6-lit-tracker-second.appspot.com",
-    messagingSenderId: "52269660447",
-    appId: "1:52269660447:web:9b5949ed12bfd88fef182a",
-    measurementId: "G-843HB9XSW1"
-};
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// USE YOUR CONFIG OBJECT
+const config = {
+    apiKey: "AIzaSyD_3aQWQ3rO4YJO5R7EHj1v8Q6gfjAJaWk",
+    authDomain: "project-6-lit-tracker.firebaseapp.com",
+    databaseURL: "https://project-6-lit-tracker.firebaseio.com",
+    projectId: "project-6-lit-tracker",
+    storageBucket: "project-6-lit-tracker.appspot.com",
+    messagingSenderId: "739658073151",
+    appId: "1:739658073151:web:e487069fdf5b98da14648a"
+};
+firebase.initializeApp(config);
 
+// this exports the CONFIGURED version of firebase
 export default firebase;
