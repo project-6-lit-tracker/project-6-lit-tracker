@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
-
 import './App.css';
 import axios from 'axios';
 import Qs from 'qs';
@@ -23,8 +22,13 @@ class App extends Component {
   }
   
   componentDidMount(){
-    
+    // firebase 
+    const dbRef = firebase.database().ref();
+    dbRef.on('value', (response) => {
+      console.log(response.val());
+    });
 
+    // API
     axios ({
       url: 'https://proxy.hackeryou.com',
 
@@ -46,29 +50,20 @@ class App extends Component {
         proxyHeaders: {
           'Access-Control-Allow-Origin': "https://proxy.hackeryou.com"
         }
-       
       },
 
       xmlToJSON: false
     }).then((res) => {
       const result2 = convert.xml2json(res.data, {compact: false, spaces: 2});
       console.log(result2);
-   
+
     })
 
-    const dbRef = firebase.database().ref();
-
-    dbRef.on('value', (response) => {
-      console.log(response.val());
-    });
   }
 
   // paramsSerializer allows us to pass query params into axios call
 
-
-
   render() {
-    
     return (
       <div className="App">
         <ul>
@@ -88,4 +83,4 @@ class App extends Component {
 export default App;
 
 
-// halp
+// What is going on????
