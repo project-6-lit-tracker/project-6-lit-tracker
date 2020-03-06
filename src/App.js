@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import firebase from './firebase';
+
 import './App.css';
 import axios from 'axios';
 import Qs from 'qs';
@@ -13,6 +15,12 @@ const convert = require('xml-js');
 
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      books: []
+    }
+  }
   
   componentDidMount(){
     
@@ -47,6 +55,12 @@ class App extends Component {
       console.log(result2);
    
     })
+
+    const dbRef = firebase.database().ref();
+
+    dbRef.on('value', (response) => {
+      console.log(response.val());
+    });
   }
 
   // paramsSerializer allows us to pass query params into axios call
@@ -57,13 +71,17 @@ class App extends Component {
     
     return (
       <div className="App">
+        <ul>
+          {this.state.books.map((book) => {        
+            return <li>{book}</li>
+          })}
+        </ul>
         {/* <Header />
         <Main />
         <Footer /> */}
       </div>
     );
   }
-
 
 }
 
