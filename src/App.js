@@ -90,6 +90,3 @@ export default App;
 // halp
 
 //try
-
-//hihihi
-//please work
