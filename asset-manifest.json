@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/project-6-lit-tracker/static/css/main.d1b05096.chunk.css",
+    "main.js": "/project-6-lit-tracker/static/js/main.f3b329d4.chunk.js",
+    "main.js.map": "/project-6-lit-tracker/static/js/main.f3b329d4.chunk.js.map",
+    "runtime-main.js": "/project-6-lit-tracker/static/js/runtime-main.d22677d5.js",
+    "runtime-main.js.map": "/project-6-lit-tracker/static/js/runtime-main.d22677d5.js.map",
+    "static/js/2.0d5d5d0f.chunk.js": "/project-6-lit-tracker/static/js/2.0d5d5d0f.chunk.js",
+    "static/js/2.0d5d5d0f.chunk.js.map": "/project-6-lit-tracker/static/js/2.0d5d5d0f.chunk.js.map",
+    "index.html": "/project-6-lit-tracker/index.html",
+    "precache-manifest.84e58d601c5241e34b480f3609f41b01.js": "/project-6-lit-tracker/precache-manifest.84e58d601c5241e34b480f3609f41b01.js",
+    "service-worker.js": "/project-6-lit-tracker/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/project-6-lit-tracker/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.0d5d5d0f.chunk.js.LICENSE.txt": "/project-6-lit-tracker/static/js/2.0d5d5d0f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d22677d5.js",
+    "static/js/2.0d5d5d0f.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.f3b329d4.chunk.js"
+  ]
+}
