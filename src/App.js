@@ -43,8 +43,9 @@ class App extends Component {
 
       xmlToJSON: false
     }).then((res) => {
-      const result2 = convert.xml2json(res.data, {compact: false, spaces: 4});
+      const result2 = convert.xml2json(res.data, {compact: false, spaces: 2});
       console.log(result2);
+   
     })
   }
 
