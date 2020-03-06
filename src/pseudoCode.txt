@@ -1,1 +1,18 @@
-1. 
+LANDING PAGE
+- User lands on page
+- There is a search bar to capture value. Would use input type="search"
+- User can search by title or author 
+- There is a search button to submit 
+
+
+SEARCH RESULTS PAGE
+- Upon submitting their search query, User is brought to a page with their Search Results, and a sidebar with custom lists that they can make (similar to Spotify)
+- Each results displays: an image and the title of the book pulled from the API 
+- On hover, User gets more info about the book (author, rating, genre, description, number of pages)
+- Beside each book, there is a plus sign. Upon clicking the plus, the User can add the book to a custom list. 
+- In the sidebar, there is a link to view the User's full library, and a button to create new custom lists 
+
+FULL LIBRARY PAGE 
+- Upon clicking "View Full Library link", User can see all books that have been added to any custom lists
+- On the side, Users have the option to set a goal for the number of books they want to read in a month. It displays the User's progress
+- There is a checkmark beside each to mark the book as read 
