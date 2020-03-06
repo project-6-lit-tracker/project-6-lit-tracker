@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from './firebase';
 import './App.css';
 import axios from 'axios';
 import Qs from 'qs';
@@ -13,10 +14,21 @@ const convert = require('xml-js');
 
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      books: [],
+    }
+  }
   
   componentDidMount(){
-    
+    // firebase 
+    const dbRef = firebase.database().ref();
+    dbRef.on('value', (response) => {
+      console.log(response.val());
+    });
 
+    // API
     axios ({
       url: 'https://proxy.hackeryou.com',
 
@@ -38,32 +50,32 @@ class App extends Component {
         proxyHeaders: {
           'Access-Control-Allow-Origin': "https://proxy.hackeryou.com"
         }
-       
       },
 
       xmlToJSON: false
     }).then((res) => {
       const result2 = convert.xml2json(res.data, {compact: false, spaces: 2});
       console.log(result2);
-   
+
     })
   }
 
   // paramsSerializer allows us to pass query params into axios call
 
-
-
   render() {
-    
     return (
       <div className="App">
+        <ul>
+          {this.state.books.map((book) => {
+            return <li>{book}</li>
+          })}
+        </ul>
         {/* <Header />
         <Main />
         <Footer /> */}
       </div>
     );
   }
-
 
 }
 
