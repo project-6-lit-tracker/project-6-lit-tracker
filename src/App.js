@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import axios from 'axios';
 import Qs from 'qs';
@@ -63,22 +64,22 @@ class App extends Component {
     );
   }
 
-
   componentDidMount() {
     axios ({
-      url: 'http://proxy.hackeryou.com',
-      method:'GET',
+      url: 'https://proxy.hackeryou.com',
+      method: 'GET',
       responseType: 'json',
+      paramsSerializer: function (params) {
+        return params
+    },
       params: {
-        reqUrl: "http://www.goodreads.com/search/index.xml",
-        key: 'eFeVrsrYTPDJs9KCydUAKA',        
-        // proxyHeaders: {
-        //   'Access-Control-Allow-Origin': "*"
-        // }      
+        method: 'GET',
+        reqUrl: "https://www.goodreads.com/search/index.xml",
+        key: '14csXzY0xdicnCrXfQSO1w',
       },
-      xmlToJSON: true,
+      xmlToJSON: false
     }).then((res) => {      
-        console.log(res);
+      console.log(res);
     })
   }
 }
