@@ -1,4 +1,5 @@
 {
+  "homepage": "https://project-6-lit-tracker.github.io/project-6-lit-tracker",
   "name": "project-6-lit-tracker",
   "version": "0.1.0",
   "private": true,
@@ -7,6 +8,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "gh-pages": "^2.2.0",
     "proxy": "proxy.hackeryou.com",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -14,6 +16,8 @@
     "xml-js": "^1.6.11"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
