@@ -3,6 +3,7 @@ import firebase from './firebase';
 import './App.css';
 import axios from 'axios';
 import Qs from 'qs';
+import SearchBar from './Components/SearchBar';
 const convert = require('xml-js');
 
 
@@ -74,6 +75,7 @@ class App extends Component {
         {/* <Header />
         <Main />
         <Footer /> */}
+        <SearchBar />
       </div>
     );
   }
@@ -83,4 +85,9 @@ class App extends Component {
 export default App;
 
 
-// What is going on????
+
+// SearchBar will be a grandchild component with a changing state
+  // In <Main/> it will render the home page "/" with the background image
+  // In <Header/> it will render on each page on the yellow background
+// SearchBar will have a state that will change based on the values we pass into it on search
+  // e.target.value
