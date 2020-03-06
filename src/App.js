@@ -68,4 +68,3 @@ class App extends Component {
 export default App;
 
 
-// possibly try building a function that converts xml to json
