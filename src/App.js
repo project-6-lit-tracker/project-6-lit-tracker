@@ -3,6 +3,9 @@ import './App.css';
 import axios from 'axios';
 import Qs from 'qs';
 // Custom Imports Here:
+import Header from './components/Header';
+import Main from './components/Main';
+import Footer from './components/Footer';
 
 
 
@@ -50,13 +53,14 @@ class App extends Component {
     
     return (
       <div className="App">
-        <h1>Testing</h1>
+        <Header />
+        <Main />
+        <Footer />
       </div>
     );
   }
 
 }
-  
 
 export default App;
 
