@@ -10,7 +10,8 @@
     "proxy": "proxy.hackeryou.com",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "xml-js": "^1.6.11"
   },
   "scripts": {
     "start": "react-scripts start",

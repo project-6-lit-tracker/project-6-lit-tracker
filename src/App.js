@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Qs from 'qs';
+const convert = require('xml-js');
+
+
 // Custom Imports Here:
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
+// import Header from './components/Header';
+// import Main from './components/Main';
+// import Footer from './components/Footer';
 
 
 
@@ -40,8 +43,8 @@ class App extends Component {
 
       xmlToJSON: false
     }).then((res) => {
-
-      console.log(res);
+      const result2 = convert.xml2json(res.data, {compact: false, spaces: 4});
+      console.log(result2);
     })
   }
 
@@ -53,9 +56,9 @@ class App extends Component {
     
     return (
       <div className="App">
-        <Header />
+        {/* <Header />
         <Main />
-        <Footer />
+        <Footer /> */}
       </div>
     );
   }
