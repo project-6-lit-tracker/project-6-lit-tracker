@@ -59,11 +59,6 @@ class App extends Component {
 
     })
 
-    const dbRef = firebase.database().ref();
-
-    dbRef.on('value', (response) => {
-      console.log(response.val());
-    });
   }
 
   // paramsSerializer allows us to pass query params into axios call
