@@ -19,8 +19,19 @@ class App extends Component {
     super();
     this.state = {
       books: [],
+      // Main axios API info
 
-      searchState: ""
+      searchInput: "",
+      // User search input for SearchBar
+
+      userLibrary: [],
+      // User selected from API books
+      // Firebase
+
+      booksToRead: [],
+      // User selected books to read later on
+      // Firebase 
+
     }
   }
   
@@ -37,6 +48,7 @@ class App extends Component {
 
       responseType: '',
 
+      // paramsSerializer allows us to pass query params into axios call
       paramsSerializer: function (params) {
         return Qs.stringify(params, {arrayFormat: 'brackets'})
       },
@@ -47,7 +59,7 @@ class App extends Component {
         params : {
           key: '14csXzY0xdicnCrXfQSO1w',
           method: "search_index",
-          q: "Harry Potter"
+          q: "Lord of the Rings"
         },
         
         proxyHeaders: {
@@ -57,14 +69,17 @@ class App extends Component {
 
       xmlToJSON: false
     }).then((res) => {
-      const result2 = convert.xml2json(res.data, {compact: false, spaces: 2});
-      console.log(result2);
+      // console.log(res.data);
+
+      const result2 = convert.xml2js(res.data, {compact: false, spaces: 2});
+
+      const condensedRes = result2.elements[0].elements[1].elements[6].elements[0].elements[8];
+      console.log(condensedRes);
 
     })
 
   }
 
-  // paramsSerializer allows us to pass query params into axios call
 
   // Create a method to capture state on submit and pass it SearchBar component as a prop
   
@@ -96,3 +111,4 @@ export default App;
   // In <Header/> it will render on each page on the yellow background
 // SearchBar will have a state that will change based on the values we pass into it on search
   // e.target.value
+
