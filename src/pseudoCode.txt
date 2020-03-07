@@ -16,3 +16,11 @@ FULL LIBRARY PAGE
 - Upon clicking "View Full Library link", User can see all books that have been added to any custom lists
 - On the side, Users have the option to set a goal for the number of books they want to read in a month. It displays the User's progress
 - There is a checkmark beside each to mark the book as read 
+
+API CALL
+- From the API, for each book we want to retrieve:
+        - Title
+        - Author
+    - On Hover
+        - Rating
+        - 
