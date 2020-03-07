@@ -18,7 +18,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      books: []
+      books: [],
+
+      searchState: ""
     }
   }
   
@@ -63,6 +65,9 @@ class App extends Component {
   }
 
   // paramsSerializer allows us to pass query params into axios call
+
+  // Create a method to capture state on submit and pass it SearchBar component as a prop
+  
 
   render() {
     return (
