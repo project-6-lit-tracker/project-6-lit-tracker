@@ -2,9 +2,21 @@ import React, { Component } from 'react';
 
 
 class SearchBar extends Component {
-    // constructor (){
-    //     super ();
-    // }
+    constructor (props){
+        super (props);
+
+        this.state = {
+            searchInput: "",
+        }
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            searchInput: e.target.value,
+        })
+        console.log(e.target.value);
+    }
+    
 
 
     render (){
@@ -26,6 +38,8 @@ class SearchBar extends Component {
                     aria-label="Search through site content"
                     title="Search by title or author"
                     required
+                    onChange={this.handleChange}
+                    value={this.searchInput}
                     ></input>
 
                     <button type="submit">Search</button>

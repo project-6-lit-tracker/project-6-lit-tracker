@@ -21,7 +21,7 @@ class App extends Component {
       books: [],
       // Main axios API info
 
-      searchInput: "",
+      // searchInput: "",
       // User search input for SearchBar
 
       userLibrary: [],
@@ -69,17 +69,39 @@ class App extends Component {
 
       xmlToJSON: false
     }).then((res) => {
-      // console.log(res.data);
+      const bookResults = [];
 
       const result2 = convert.xml2js(res.data, {compact: false, spaces: 2});
-
-      const condensedRes = result2.elements[0].elements[1].elements[6].elements[0].elements[8];
+      
+      const condensedRes = result2.elements[0].elements[1].elements[6].elements;
       console.log(condensedRes);
 
-    })
+      const newRes = [...condensedRes];
+      console.log(newRes);
+      // const condensedRes = result2.elements[0].elements[1].elements[6].elements[0].elements[8].elements;
+
+
+      // Grab individual book information from API 
+      newRes.map((book) => {
+        return (
+        
+          bookResults.push({
+            title: book.elements[8].elements[1].elements[0].text,
+            author: book.elements[8].elements[2].elements[1].elements[0].text,
+
+          })
+        )
+      })
+    
+      console.log(bookResults);
+      
+      })
+
 
   }
 
+  
+ 
 
   // Create a method to capture state on submit and pass it SearchBar component as a prop
   
@@ -95,7 +117,9 @@ class App extends Component {
         {/* <Header />
         <Main />
         <Footer /> */}
-        <SearchBar />
+        <SearchBar 
+
+        />
       </div>
     );
   }
