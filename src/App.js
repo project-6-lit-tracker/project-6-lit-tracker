@@ -74,34 +74,77 @@ class App extends Component {
       const result2 = convert.xml2js(res.data, {compact: false, spaces: 2});
       
       const condensedRes = result2.elements[0].elements[1].elements[6].elements;
-      console.log(condensedRes);
+    
 
       const newRes = [...condensedRes];
-      console.log(newRes);
-      // const condensedRes = result2.elements[0].elements[1].elements[6].elements[0].elements[8].elements;
+      // console.log(newRes)  // const condensedRes = result2.elements[0].elements[1].elements[6].elements[0].elements[8].elements;
 
 
       // Grab individual book information from API 
       newRes.map((book) => {
+
         return (
-        
           bookResults.push({
             title: book.elements[8].elements[1].elements[0].text,
+
             author: book.elements[8].elements[2].elements[1].elements[0].text,
 
+            key: book.elements[8].elements[0].elements[0].text,
+
+            rating: book.elements[7].elements[0].text,
+            
+            imageUrl: book.elements[8].elements[3].elements[0].text
           })
-        )
+        );
       })
     
-      console.log(bookResults);
-      
+        console.log(bookResults);
+
+      this.setState({
+        books: bookResults
       })
+
+    })
 
 
   }
 
   
- 
+  // handleFormSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   axios ({
+  //     url: 'https://proxy.hackeryou.com',
+
+  //     responseType: '',
+
+  //     // paramsSerializer allows us to pass query params into axios call
+  //     paramsSerializer: function (params) {
+  //       return Qs.stringify(params, {arrayFormat: 'brackets'})
+  //     },
+
+  //     params: {
+  //       reqUrl: "https://www.goodreads.com/search/index.xml",
+        
+  //       params : {
+  //         key: '14csXzY0xdicnCrXfQSO1w',
+  //         method: "search_index",
+  //         // q: //searchInput,
+  //       },
+        
+  //       proxyHeaders: {
+  //         'Access-Control-Allow-Origin': "https://proxy.hackeryou.com"
+  //       }
+  //     },
+
+  //     xmlToJSON: false
+  //   }).then ((res) => {
+  //     // more stuff
+  //   })
+
+
+
+  // }
 
   // Create a method to capture state on submit and pass it SearchBar component as a prop
   
@@ -109,17 +152,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ul>
+        {/* <ul>
           {this.state.books.map((book) => {        
             return <li>{book}</li>
           })}
-        </ul>
+        </ul> */}
+
+        {/* Firebase Setup */}
         {/* <Header />
         <Main />
         <Footer /> */}
-        <SearchBar 
-
-        />
+        <SearchBar />
       </div>
     );
   }
