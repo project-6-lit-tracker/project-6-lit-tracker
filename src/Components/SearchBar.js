@@ -61,7 +61,7 @@ class SearchBar extends Component {
         
         
         const userSearchRes = [...condensedRes2];
-        console.log(userSearchRes);
+        // console.log(userSearchRes);
 
     // Push search results into empty array
         userSearchRes.map(book => {
@@ -134,21 +134,7 @@ class SearchBar extends Component {
                 </div>
         );
     }
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
 
 
 
