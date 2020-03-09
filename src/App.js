@@ -6,12 +6,11 @@ import Qs from 'qs';
 
 import Header from './Components/Header';
 import Main from './Components/Main';
-import SearchBar from './Components/SearchBar';
 import Footer from './Components/Footer';
+import SearchResults from './Components/SearchResults';
 const convert = require('xml-js');
 
 
-// import Footer from './components/Footer';
 
 
 
@@ -209,9 +208,10 @@ class App extends Component {
 
         <Main/>
         <Footer/>
+
+        <SearchResults />
         
 
-        {/* <Footer /> */}
       </div>
     );
   }

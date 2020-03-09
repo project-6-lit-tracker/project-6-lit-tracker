@@ -75,13 +75,6 @@ main {
 }
 
 
-
-
-
-
-
-
-
 /* Search Bar */
 
 button {
@@ -120,6 +113,31 @@ footer p {
 footer a {
   margin-left: 10px;
 }
+
+/* Search Results */
+.second-page {
+  height: 100vh;
+}
+
+.search-results-container {
+  height: 65vh;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+  
+  .search-results { 
+    
+    grid-area: 1 / 1 / 11 / 6; 
+
+  }
+
+
+  .make-a-list { 
+    grid-area: 1 / 6 / 11 / 9; 
+  } 
 
 
 
