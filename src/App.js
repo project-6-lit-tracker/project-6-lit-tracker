@@ -3,13 +3,14 @@ import firebase from './firebase';
 import './App.css';
 import axios from 'axios';
 import Qs from 'qs';
+
+import Header from './Components/Header';
+import Main from './Components/Main';
 import SearchBar from './Components/SearchBar';
+import Footer from './Components/Footer';
 const convert = require('xml-js');
 
 
-// Custom Imports Here:
-// import Header from './components/Header';
-// import Main from './components/Main';
 // import Footer from './components/Footer';
 
 
@@ -110,42 +111,6 @@ class App extends Component {
   }
 
   
-  // handleFormSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   axios ({
-  //     url: 'https://proxy.hackeryou.com',
-
-  //     responseType: '',
-
-  //     // paramsSerializer allows us to pass query params into axios call
-  //     paramsSerializer: function (params) {
-  //       return Qs.stringify(params, {arrayFormat: 'brackets'})
-  //     },
-
-  //     params: {
-  //       reqUrl: "https://www.goodreads.com/search/index.xml",
-        
-  //       params : {
-  //         key: '14csXzY0xdicnCrXfQSO1w',
-  //         method: "search_index",
-  //         // q: //searchInput,
-  //       },
-        
-  //       proxyHeaders: {
-  //         'Access-Control-Allow-Origin': "https://proxy.hackeryou.com"
-  //       }
-  //     },
-
-  //     xmlToJSON: false
-  //   }).then ((res) => {
-  //     // more stuff
-  //   })
-
-
-
-  // }
-
   // Create a method to capture state on submit and pass it SearchBar component as a prop
   
 
@@ -157,12 +122,14 @@ class App extends Component {
             return <li>{book}</li>
           })}
         </ul> */}
-
         {/* Firebase Setup */}
-        {/* <Header />
-        <Main />
-        <Footer /> */}
-        <SearchBar />
+        <Header />
+
+        <Main/>
+        <Footer/>
+        
+
+        {/* <Footer /> */}
       </div>
     );
   }

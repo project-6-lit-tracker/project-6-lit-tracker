@@ -15,7 +15,7 @@ const Footer = () => {
             aria-hidden="true"
             title="afuadeborahcodes.com" 
             alt="Go to Afua's page."
-            > </a>
+            >Afua Frimpong </a>
 
             <a href="http://claudiaahn.com/"
             className="footer-link"
@@ -25,7 +25,7 @@ const Footer = () => {
             aria-hidden="true"
             title="claudiaahn.com"
             alt="Go to Claudia's page"
-            > </a>
+            >Claudia Ahn </a>
 
             <a href="http://fabiodwyer.com/"
             className="footer-link"
@@ -35,7 +35,7 @@ const Footer = () => {
             aria-hidden="true"
             title="fabiodwyer.com"
             alt="Go to Fabio's page"
-            > </a>
+            >Fabio Dwyer </a>
 
 
             <a href="https://www.linkedin.com/in/jacqueline-nosal/"
@@ -46,7 +46,7 @@ const Footer = () => {
             aria-hidden="true"
             title="Jacqui Nosal on Linked"
             alt="Go to Jacqui's page"
-            > </a>
+            >Jacqui Nosal </a>
         </p>
 
     </footer>
