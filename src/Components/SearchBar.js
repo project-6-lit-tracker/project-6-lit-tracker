@@ -9,6 +9,7 @@ class SearchBar extends Component {
         super (props);
 
         this.state = {
+            userBooks: [],
             searchInput: "",
         }
     }
@@ -82,10 +83,23 @@ class SearchBar extends Component {
                 })
             );
         })
-
-            console.log(userSearchResults);
-        })
     
+    // Store searched books
+        this.setState({
+            books: userSearchResults,
+        })
+        console.log(userSearchResults);
+
+
+
+        
+    })
+    
+    // Clear search input
+        this.setState({
+            searchInput: " ",
+
+        })
     
     
     }

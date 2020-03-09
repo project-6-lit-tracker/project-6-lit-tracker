@@ -12,7 +12,7 @@ html {
 body {
   font-family: 'Lato', sans-serif;
   font-size: 2rem;
-
+  color: #313131;
 }
 
 h1,
@@ -27,8 +27,10 @@ img {
 
 h1,
 h2,
+p,
 button,
-form {
+form,
+footer {
   margin: 0;
   padding: 0;
 }
@@ -37,6 +39,11 @@ ul,
 li,
 a {
   list-style: none;
+  text-decoration: none; 
+  color: inherit;
+}
+
+a:active {
   text-decoration: none;
 }
 
@@ -46,8 +53,36 @@ a {
   margin: 0 auto;
 }
 
+/* Header */
+header {
+  text-transform: uppercase;
+  background-color: #F0B377;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-/* Home Page */
+
+/* Main */
+main {
+  height: 65vh;
+  background-image: url(./assets/jessica-ruscello-OQSCtabGkSY-unsplash.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 75px;
+}
+
+
+
+
+
+
+
+
+
+/* Search Bar */
 
 button {
   background-color: #E76155;
@@ -72,6 +107,18 @@ input[type="search"] {
 
 footer {
   background-color:#CCCC97;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer p {
+  font-size: 1.6rem;
+}
+
+footer a {
+  margin-left: 10px;
 }
 
 
