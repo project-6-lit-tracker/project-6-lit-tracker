@@ -5,8 +5,8 @@ const convert = require('xml-js');
 
 
 class SearchBar extends Component {
-    constructor (props){
-        super (props);
+    constructor (){
+        super ();
 
         this.state = {
             userBooks: [],
@@ -97,10 +97,9 @@ class SearchBar extends Component {
     
     // Clear search input
         this.setState({
-            searchInput: " ",
-
+            searchInput: "",
         })
-    
+
     
     }
 
@@ -125,7 +124,7 @@ class SearchBar extends Component {
                         title="Search by title or author"
                         required
                         onChange={this.handleChange}
-                        value={this.searchInput}>
+                        value={this.state.searchInput}>
                         </input>
 
                     <button type="submit">Search</button>
