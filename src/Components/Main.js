@@ -65,7 +65,7 @@ class Main extends Component {
         
         
         const userSearchRes = [...condensedRes2];
-        // console.log(userSearchRes);
+        console.log(userSearchRes);
 
     // Push search results into empty array
         userSearchRes.map(book => {
@@ -82,20 +82,24 @@ class Main extends Component {
 
                     rating: book.elements[7].elements[0].text,
 
-                    imageUrl: book.elements[8].elements[3].elements[0].text === undefined ? "/src/assets/noCover.jpg"
+                    imageUrl: book.elements[8].elements[3].elements[0].text 
+                    === undefined ? "/src/assets/noCover.jpg"
                     : book.elements[8].elements[3].elements[0].text,
+                    
                 })
-            );
+                );
+            })
+            
+            // Store searched books
+            this.setState({
+                userBooks: userSearchResults,
+            })
+            console.log(userSearchResults);
+            console.log(userSearchResults.imageUrl);
+            
         })
-    
-    // Store searched books
-        this.setState({
-            books: userSearchResults,
-        })
-        console.log(userSearchResults);
-    
-    })
-    
+        
+   
     // Clear search input
         this.setState({
             searchInput: "",
@@ -144,7 +148,27 @@ class Main extends Component {
 
                     <div className="search-results">
                         <h2>Search Results</h2>
+                        {this.state.userBooks.map(book =>{
+                            return (
+                                <div key={book.key} className="book-info">
+                                    <p>{book.title}</p>
+                                    <p>{book.author} </p>
+                                    <img src={`${book.imageUrl}`} alt={`Cover art for ${book.title}`}/>
+                                    <p>{book.rating}</p>
+                                </div>
 
+
+                            )
+
+
+
+
+
+                        })
+                        
+                            
+                    }
+                        
                     </div>
 
 
