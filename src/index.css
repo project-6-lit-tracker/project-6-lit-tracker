@@ -65,8 +65,8 @@ header {
 
 
 /* Main */
-main {
-  height: 65vh;
+.landing {
+  height: 70vh;
   background-image: url(./assets/jessica-ruscello-OQSCtabGkSY-unsplash.jpg);
   background-position: center;
   background-repeat: no-repeat;
@@ -115,12 +115,11 @@ footer a {
 }
 
 /* Search Results */
-.second-page {
-  height: 100vh;
-}
+
 
 .search-results-container {
-  height: 65vh;
+  height: 100vh;
+  /* height: 65vh; */
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(10, 1fr);
@@ -129,14 +128,14 @@ footer a {
 }
   
   .search-results { 
-    
     grid-area: 1 / 1 / 11 / 6; 
 
   }
 
 
   .make-a-list { 
-    grid-area: 1 / 6 / 11 / 9; 
+    grid-area: 1 / 6 / 11 / 9;
+    border-left: 1px solid #CCCC97; 
   } 
 
 
