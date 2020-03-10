@@ -39,10 +39,10 @@ class App extends Component {
   
   componentDidMount(){
     // firebase 
-    const dbRef = firebase.database().ref();
-    dbRef.on('value', (response) => {
-      console.log(response.val());
-    });
+    // const dbRef = firebase.database().ref();
+    // dbRef.on('value', (response) => {
+    //   console.log(response.val());
+    // });
 
     // API
     axios ({
@@ -112,85 +112,6 @@ class App extends Component {
   }
 
 
-//   handleFormSubmit = (e) => {
-//     e.preventDefault();
-
-//     axios ({
-//         url: 'https://proxy.hackeryou.com',
-
-//         responseType: '',
-
-// // paramsSerializer allows us to pass query params into axios call
-//         paramsSerializer: function (params) {
-//             return Qs.stringify(params, {arrayFormat: 'brackets'})
-//         },
-
-//         params: {
-//             reqUrl: "https://www.goodreads.com/search/index.xml",
-        
-//             params : {
-//                 key: '14csXzY0xdicnCrXfQSO1w',
-//                 method: "search_index",
-//                 q: this.state.searchInput,
-//             },
-        
-//             proxyHeaders: {
-//                 'Access-Control-Allow-Origin': "https://proxy.hackeryou.com"
-//             }
-//         },
-
-//         xmlToJSON: false
-
-// }).then ((res) => {
-// // Convert XML to JS Object
-//     const userSearchResults = [];
-
-//     const result3 = convert.xml2js(res.data, {compact: false, spaces: 2});
-    
-//     const condensedRes2 = result3.elements[0].elements[1].elements[6].elements;
-
-    
-    
-//     const userSearchRes = [...condensedRes2];
-//     console.log(userSearchRes);
-
-// // Push search results into empty array
-//     userSearchRes.map(book => {
-
-//         return (
-//             userSearchResults.push({
-//                 title: book.elements[8].elements[1].elements[0].text,
-
-//                 author: book.elements[8].elements[2].elements[1].elements[0].text === undefined 
-//                 ? "" 
-//                 : book.elements[8].elements[2].elements[1].elements[0].text,
-
-//                 key: book.elements[8].elements[0].elements[0].text,
-
-//                 rating: book.elements[7].elements[0].text,
-
-//                 imageUrl: book.elements[8].elements[3].elements[0].text === undefined ? "/src/assets/noCover.jpg"
-//                 : book.elements[8].elements[3].elements[0].text,
-//             })
-//         );
-//     })
-
-// // Store searched books
-//     this.setState({
-//         searchedBooks: userSearchResults,
-//     })
-//     console.log(userSearchResults);
-   
-// })
-
-// // Clear search input
-//     this.setState({
-//         searchInput: " ",
-
-//     })
-
-
-// }
   
   
 
@@ -221,10 +142,4 @@ class App extends Component {
 export default App;
 
 
-
-// SearchBar will be a grandchild component with a changing state
-  // In <Main/> it will render the home page "/" with the background image
-  // In <Header/> it will render on each page on the yellow background
-// SearchBar will have a state that will change based on the values we pass into it on search
-  // e.target.value
 
