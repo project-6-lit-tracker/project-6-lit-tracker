@@ -118,12 +118,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <ul>
-          {this.state.books.map((book) => {        
-            return <li>{book}</li>
-          })}
-        </ul> */}
-        {/* Firebase Setup */}
+ 
         <Header />
 
         <Main />

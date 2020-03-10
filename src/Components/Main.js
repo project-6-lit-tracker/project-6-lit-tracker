@@ -252,10 +252,8 @@ componentDidMount(){
                                                         <p>Add to {book.name}</p>    
                                                     </li>  
                                                 )
-                                            })}
-                                                {/* <li><p>Add to 2020 To-Read</p></li>
-                                                <li><p>Add to list</p></li>
-                                                <li><p>Add to list</p></li> */}
+                                                })}
+                                               
                                             </ul>
 
                                         </div>
@@ -300,8 +298,11 @@ componentDidMount(){
                                 {this.state.createList.map(book => {
                                     return (
                                       <li key={book.key} className="list-title">
+
                                           <p>{book.name} </p>
+
                                           <FaTimesCircle onClick={() => {this.removeList(book.key)}}/> 
+
                                       </li>  
                                     )
                                 })}
