@@ -79,7 +79,7 @@ class App extends Component {
     
 
       const newRes = [...condensedRes];
-      // console.log(newRes)  // const condensedRes = result2.elements[0].elements[1].elements[6].elements[0].elements[8].elements;
+
 
 
       // Grab individual book information from API 
