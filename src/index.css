@@ -175,14 +175,38 @@ span {
 
 svg {
   margin-left: 5px;
+  color: #F0B377;
 }
 
 .book-list {
   text-align: center;
   margin: 10px;
 }
+
+.book-list p {
+  color: #E76155;
+}
  
 
+
+/* To Read Lists */
+.placeholder {
+  border: 2px dotted black;
+  height: 25vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 40px auto;
+  padding: 10px;
+  font-style: italic;
+  background-color: #E3E3E3;
+}
+
+input[type="text"] {
+  border: 1px solid black;
+  padding: 15px;
+}
 
 
 
@@ -200,6 +224,7 @@ svg {
 /* #E76155 */
 /* #F0B377 */
 /* #CCCC97 */
+/* #FFA818; */
 
 
 /* flex whole page so footer stays at the bottom */

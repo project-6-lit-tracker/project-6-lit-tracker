@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Qs from 'qs';
 import { FaStar }  from 'react-icons/fa';
+import firebase from 'firebase';
 const convert = require('xml-js');
 
 
@@ -15,9 +16,73 @@ class Main extends Component {
         this.state = {
             userBooks: [],
             searchInput: "",
+            fbSearchInput: "",
+            createList: [],
         }
     }
 
+// Firebase
+componentDidMount(){
+// Create a variable that holds a reference to our database
+    const dbRef = firebase.database().ref();
+
+// here we add an event listener to that variable that will fire every time there is a change in the database
+
+// this event listener takes a callback function which we will use to get our data from the database and call it response
+
+    dbRef.on('value', (response) => {
+
+// here we use Firebase's .val() method to parse our database info the way we want it
+      const data = response.val();
+
+      const newState = [];
+      
+      for (let key in data){
+          const bookInfo = {
+              key: key,
+              name: data[key],
+          }
+        
+        newState.push(bookInfo);
+
+      }
+      
+  // Change the Initial State
+    this.setState({
+        createList: newState,
+        fbSearchInput: ''
+    })
+    console.log(newState);
+    console.log(response.val());
+      
+    })
+}
+
+// Create List Handler
+    handleFirebaseChange = (eventFb) => {
+        this.setState({
+            fbSearchInput: eventFb.target.value,
+        })
+        console.log(eventFb.target.value);
+    }
+
+// Firebase Form Submit
+    handleFirebaseSubmit = (eventFb) => {
+        eventFb.preventDefault();
+
+        const dbUserList = firebase.database().ref();
+
+        dbUserList.push(this.state.fbSearchInput);
+
+        this.setState({
+            fbSearchInput: '',
+        })
+
+    }
+
+
+
+// Second axios Search Handler
     handleChange = (e) => {
         this.setState({
             searchInput: e.target.value,
@@ -25,6 +90,8 @@ class Main extends Component {
         console.log(e.target.value);
     }
 
+
+// Second axios Form Submit
     handleFormSubmit = (e) => {
         e.preventDefault();
     
@@ -153,7 +220,6 @@ class Main extends Component {
                         <h2>Search Results</h2>
                         <div className="display-container">
 
-
                             {this.state.userBooks.map(book =>{
                                 return (
                                     <div key={book.key} className='book-info'>
@@ -165,7 +231,7 @@ class Main extends Component {
                                         </div>
                                         <div className="book-list-container">
                                             <ul className="book-list">
-                                                <li><p>Add to list</p></li>
+                                                <li><p>Add to 2020 To-Read</p></li>
                                                 <li><p>Add to list</p></li>
                                                 <li><p>Add to list</p></li>
                                             </ul>
@@ -182,14 +248,38 @@ class Main extends Component {
                         
                     </div>
 
-
                     <div className="make-a-list">
-                        <h2>2020 To-Read</h2>
+            
+                        <form action="submit" onSubmit={this.handleFirebaseSubmit}>
 
+                            <label
+                            className="sr-only"
+                            htmlFor="create-list">
+                            </label>
 
+                            <input 
+                            type="text" 
+                            id= "create-list"
+                            aria-label="Create personal book list"
+                            title="Create book list"
+                            required
+                            value={this.state.fbSearchInput}
+                            onChange={this.handleFirebaseChange}>
+                            </input>
+
+                            <button type="submit">Create List</button>
+
+                        </form>
+                        
+                        <div className="placeholder">
+
+                            <p>List of books will appear here.</p>
+
+                        </div>
                     </div>
 
                 </div>
+
             </main>
             
         );
@@ -200,3 +290,5 @@ class Main extends Component {
 }
 
 export default Main;
+
+// Click on Add to List, title of the book will populate the placeholder in the list section
