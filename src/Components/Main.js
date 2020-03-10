@@ -163,6 +163,14 @@ class Main extends Component {
                                         <div className="icon">
                                             <p>{book.rating}</p><FaStar />
                                         </div>
+                                        <div className="book-list-container">
+                                            <ul className="book-list">
+                                                <li><p>Add to list</p></li>
+                                                <li><p>Add to list</p></li>
+                                                <li><p>Add to list</p></li>
+                                            </ul>
+
+                                        </div>
                                     </div>
 
 
