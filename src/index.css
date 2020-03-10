@@ -36,7 +36,9 @@ h2,
 p,
 button,
 form,
-footer {
+footer,
+ul,
+li {
   margin: 0;
   padding: 0;
 }
@@ -150,7 +152,7 @@ footer a {
 
 .book-info {
   width: calc(50% - 40px);
-  margin: 20px;
+  margin: 50px 20px;
 }
 
 .book-info img {
@@ -173,6 +175,11 @@ span {
 
 svg {
   margin-left: 5px;
+}
+
+.book-list {
+  text-align: center;
+  margin: 10px;
 }
  
 
