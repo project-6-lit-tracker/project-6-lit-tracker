@@ -216,7 +216,7 @@ componentDidMount(){
 
                 <div className="search-results-container">
 
-                    <div className="search-results">
+                    <section className="search-results">
                         <h2>Search Results</h2>
                         <div className="display-container">
 
@@ -246,9 +246,9 @@ componentDidMount(){
 
                         </div>
                         
-                    </div>
+                    </section>
 
-                    <div className="make-a-list">
+                    <section className="make-a-list">
             
                         <form action="submit" onSubmit={this.handleFirebaseSubmit}>
 
@@ -276,9 +276,47 @@ componentDidMount(){
                             <p>List of books will appear here.</p>
 
                         </div>
-                    </div>
+                    </section>
 
                 </div>
+
+                <section className="goals">
+                    <div className="wrapper goal-container">
+                        <div className="goal-box goal1">
+                            <p>Set a Goal!</p>
+                            <p>How many books do you want to read this month?</p>
+                            <form action="submit">
+
+                                <label
+                                className="sr-only"
+                                htmlFor="set-goal">
+                                </label>
+
+                                <input 
+                                type="text" 
+                                id= "set-goal"
+                                className="set-goal"
+                                aria-label="Enter goal number of books"
+                                title="Enter goal number of books"
+                                required
+                                // value={this.state.fbSearchInput}
+                                // onChange={this.handleFirebaseChange}
+                                >
+                                </input>
+
+                                <button type="submit">Enter Goal</button>
+
+                            </form>
+                        </div>
+                        <div className="goal-box">
+                            <p>Your goal: x# books</p>
+                        </div>
+                        <div className="goal-box">
+                            <p>You’ve read 30%.</p>
+                            <p>70% more to go!</p>
+                        </div>
+                    </div>
+                </section>
 
             </main>
             

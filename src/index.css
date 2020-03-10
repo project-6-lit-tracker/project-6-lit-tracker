@@ -208,6 +208,33 @@ input[type="text"] {
   padding: 15px;
 }
 
+/* Goals Section */
+.goals {
+  background-color: #E3E3E3;
+}
+
+.goal-container {
+  display: flex;
+  text-align: center;
+}
+
+.goal-box {
+  width: calc(100%/3);
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.goal1 {
+  text-align: left;
+}
+
+.set-goal {
+  width: 150px;
+  margin-top: 20px;
+}
+
 
 
 
