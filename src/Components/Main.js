@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import SearchBar from './SearchBar';
 import axios from 'axios';
 import Qs from 'qs';
+import { FaStar }  from 'react-icons/fa';
 const convert = require('xml-js');
 
 
@@ -45,6 +45,7 @@ class Main extends Component {
                     key: '14csXzY0xdicnCrXfQSO1w',
                     method: "search_index",
                     q: this.state.searchInput,
+                    _limit: 4,
                 },
             
                 proxyHeaders: {
@@ -66,7 +67,9 @@ class Main extends Component {
         
         const userSearchRes = [...condensedRes2];
         console.log(userSearchRes);
+        
 
+       
     // Push search results into empty array
         userSearchRes.map(book => {
 
@@ -95,7 +98,7 @@ class Main extends Component {
                 userBooks: userSearchResults,
             })
             console.log(userSearchResults);
-            console.log(userSearchResults.imageUrl);
+            
             
         })
         
@@ -148,26 +151,26 @@ class Main extends Component {
 
                     <div className="search-results">
                         <h2>Search Results</h2>
-                        {this.state.userBooks.map(book =>{
-                            return (
-                                <div key={book.key} className="book-info">
-                                    <p>{book.title}</p>
-                                    <p>{book.author} </p>
-                                    <img src={`${book.imageUrl}`} alt={`Cover art for ${book.title}`}/>
-                                    <p>{book.rating}</p>
-                                </div>
+                        <div className="display-container">
 
 
-                            )
+                            {this.state.userBooks.map(book =>{
+                                return (
+                                    <div key={book.key} className='book-info'>
+                                        <p>{book.title}</p>
+                                        <span><p>{book.author} </p></span>
+                                        <img src={`${book.imageUrl}`} alt={`Cover art for ${book.title}`}/>
+                                        <div className="icon">
+                                            <p>{book.rating}</p><FaStar />
+                                        </div>
+                                    </div>
 
 
-
-
-
-                        })
+                                )
                         
-                            
-                    }
+                            })}
+
+                        </div>
                         
                     </div>
 

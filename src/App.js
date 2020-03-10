@@ -4,11 +4,10 @@ import './App.css';
 import axios from 'axios';
 import Qs from 'qs';
 
+
 import Header from './Components/Header';
 import Main from './Components/Main';
 import Footer from './Components/Footer';
-
-// import SearchResults from './Components/SearchResults';
 const convert = require('xml-js');
 
 
