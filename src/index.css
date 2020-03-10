@@ -208,6 +208,20 @@ input[type="text"] {
   padding: 15px;
 }
 
+.list-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-title p {
+  margin: 5px auto;
+}
+
+.list-title svg {
+  margin-left: 15px;
+}
+
 
 
 
