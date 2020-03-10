@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/project-6-lit-tracker/static/css/main.ebca1c51.chunk.css",
-    "main.js": "/project-6-lit-tracker/static/js/main.e63a7619.chunk.js",
-    "main.js.map": "/project-6-lit-tracker/static/js/main.e63a7619.chunk.js.map",
+    "main.css": "/project-6-lit-tracker/static/css/main.2f5e113a.chunk.css",
+    "main.js": "/project-6-lit-tracker/static/js/main.f5387319.chunk.js",
+    "main.js.map": "/project-6-lit-tracker/static/js/main.f5387319.chunk.js.map",
     "runtime-main.js": "/project-6-lit-tracker/static/js/runtime-main.d22677d5.js",
     "runtime-main.js.map": "/project-6-lit-tracker/static/js/runtime-main.d22677d5.js.map",
-    "static/js/2.90e07fc8.chunk.js": "/project-6-lit-tracker/static/js/2.90e07fc8.chunk.js",
-    "static/js/2.90e07fc8.chunk.js.map": "/project-6-lit-tracker/static/js/2.90e07fc8.chunk.js.map",
+    "static/js/2.dd8e137c.chunk.js": "/project-6-lit-tracker/static/js/2.dd8e137c.chunk.js",
+    "static/js/2.dd8e137c.chunk.js.map": "/project-6-lit-tracker/static/js/2.dd8e137c.chunk.js.map",
     "index.html": "/project-6-lit-tracker/index.html",
-    "precache-manifest.db4e0631dffc62540793efc0db2de87a.js": "/project-6-lit-tracker/precache-manifest.db4e0631dffc62540793efc0db2de87a.js",
+    "precache-manifest.0501369792327fef63a52f45d7ea1d6b.js": "/project-6-lit-tracker/precache-manifest.0501369792327fef63a52f45d7ea1d6b.js",
     "service-worker.js": "/project-6-lit-tracker/service-worker.js",
-    "static/css/main.ebca1c51.chunk.css.map": "/project-6-lit-tracker/static/css/main.ebca1c51.chunk.css.map",
-    "static/js/2.90e07fc8.chunk.js.LICENSE.txt": "/project-6-lit-tracker/static/js/2.90e07fc8.chunk.js.LICENSE.txt",
+    "static/css/main.2f5e113a.chunk.css.map": "/project-6-lit-tracker/static/css/main.2f5e113a.chunk.css.map",
+    "static/js/2.dd8e137c.chunk.js.LICENSE.txt": "/project-6-lit-tracker/static/js/2.dd8e137c.chunk.js.LICENSE.txt",
     "static/media/index.css": "/project-6-lit-tracker/static/media/jessica-ruscello-OQSCtabGkSY-unsplash.1dac52a9.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.d22677d5.js",
-    "static/js/2.90e07fc8.chunk.js",
-    "static/css/main.ebca1c51.chunk.css",
-    "static/js/main.e63a7619.chunk.js"
+    "static/js/2.dd8e137c.chunk.js",
+    "static/css/main.2f5e113a.chunk.css",
+    "static/js/main.f5387319.chunk.js"
   ]
 }
