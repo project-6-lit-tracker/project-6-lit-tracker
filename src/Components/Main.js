@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Qs from 'qs';
-import { FaStar }  from 'react-icons/fa';
+import { FaStar, FaTimesCircle }  from 'react-icons/fa';
 import firebase from 'firebase';
 const convert = require('xml-js');
 
@@ -78,6 +78,13 @@ componentDidMount(){
             fbSearchInput: '',
         })
 
+    }
+
+// Firebase Removal 
+    removeList = (listTitle) => {
+        const dbRef = firebase.database().ref();
+
+        dbRef.child(listTitle).remove();
     }
 
 
@@ -223,20 +230,36 @@ componentDidMount(){
                             {this.state.userBooks.map(book =>{
                                 return (
                                     <div key={book.key} className='book-info'>
+
                                         <p>{book.title}</p>
+
                                         <span><p>{book.author} </p></span>
+
                                         <img src={`${book.imageUrl}`} alt={`Cover art for ${book.title}`}/>
+
                                         <div className="icon">
+
                                             <p>{book.rating}</p><FaStar />
+
                                         </div>
+
                                         <div className="book-list-container">
+
                                             <ul className="book-list">
-                                                <li><p>Add to 2020 To-Read</p></li>
+                                            {this.state.createList.map(book => {
+                                                return (
+                                                    <li key={book.key}>
+                                                        <p>Add to {book.name}</p>    
+                                                    </li>  
+                                                )
+                                            })}
+                                                {/* <li><p>Add to 2020 To-Read</p></li>
                                                 <li><p>Add to list</p></li>
-                                                <li><p>Add to list</p></li>
+                                                <li><p>Add to list</p></li> */}
                                             </ul>
 
                                         </div>
+
                                     </div>
 
 
@@ -272,8 +295,18 @@ componentDidMount(){
                         </form>
                         
                         <div className="placeholder">
+                            <ul>
+                            {/* <p>List of books will appear here.</p> */}
+                                {this.state.createList.map(book => {
+                                    return (
+                                      <li key={book.key} className="list-title">
+                                          <p>{book.name} </p>
+                                          <FaTimesCircle onClick={() => {this.removeList(book.key)}}/> 
+                                      </li>  
+                                    )
+                                })}
+                            </ul>
 
-                            <p>List of books will appear here.</p>
 
                         </div>
                     </section>
