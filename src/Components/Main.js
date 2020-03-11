@@ -3,7 +3,10 @@ import axios from 'axios';
 import Qs from 'qs';
 import { FaStar, FaTimesCircle }  from 'react-icons/fa';
 import firebase from 'firebase';
+
+import Map from  './Map';
 const convert = require('xml-js');
+
 
 
 
@@ -360,6 +363,7 @@ componentDidMount(){
                                       <li key={list.key} className="list-title">
 
                                           <h3>{list.name}</h3>
+                                          
                                           <ul>
                                              <li>{list.books[0].title}</li>
                                           </ul>
@@ -370,7 +374,7 @@ componentDidMount(){
                                     )
                                 })}
                             </ul>
-{/* make a function component in the ul and map throough the lis it in that component */}
+{/* make a function component in the ul and map through the lis in that component */}
 
                         </div>
                     </section>
