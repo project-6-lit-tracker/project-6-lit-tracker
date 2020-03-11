@@ -23,6 +23,7 @@ class Main extends Component {
             searchInput: "",
             fbSearchInput: "",
             createList: [],
+            readBooks: undefined,
         // Setting state for the preloader
             done: true
         }
@@ -197,6 +198,24 @@ componentDidMount(){
     //Function to scroll
     scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
+    //Progress handling
+    handleProgressChange = (e) => {
+        this.setState({
+            listSelection: e.target.value,
+        })
+        console.log(e.target.value);
+    }
+
+    handleClickProgress = (e) => {
+        e.preventDefault();
+        const dbRef = firebase.database().ref();
+        // dbRef.push(this.state.fbGoalInput);
+        this.setState({
+            readBooks: undefined,
+        })
+    }
+
+
 
     render(){
 
@@ -296,7 +315,7 @@ componentDidMount(){
                             title="Create book list"
                             required
                             value={this.state.fbSearchInput}
-                            onChange={this.handleFirebaseChange}>
+                            onChange={this.handleFirbaseChange}>
                             </input>
 
                             <button type="submit">Create List</button>
@@ -322,41 +341,40 @@ componentDidMount(){
 
                 </div>
 
-                <section className="goals">
-                    <div className="wrapper goal-container">
-                        <div className="goal-box goal1">
-                            <p>Set a Goal!</p>
-                            <p>How many books do you want to read this month?</p>
-                            <form className="goal-form" action="submit">
-
+                <section className="progress">
+                    <div className="wrapper progress-container">
+                        <div className="progress-box progress1">
+                            <form className="progress" action="submit">
                                 <label
                                 className="sr-only"
-                                htmlFor="set-goal">
-                                </label>
+                                htmlFor="progress">
+                                Select a list to show reading progress</label>
 
-                                <input 
-                                type="text" 
-                                id= "set-goal"
-                                className="set-goal"
-                                aria-label="Enter goal number of books"
-                                title="Enter goal number of books"
+                                <select 
+                                id= "progress"
+                                className="progress"
+                                aria-label="Select a list to show reading progress"
+                                title="Select a list to show reading progress"
                                 required
-                                // value={this.state.fbSearchInput}
-                                // onChange={this.handleFirebaseChange}
+                                // value={this.state.readBooks}
+                                onChange={this.handleProgressChange}
                                 >
-                                </input>
-
-                                <button type="submit">Enter Goal</button>
-
+                                    <option value="2020 To-Read PLACEHOLDER">
+                                    2020 To-Read PLACEHOLDER
+                                    </option>
+                                    <option value="2020 To-Read PLACEHOLDER">
+                                    2020 To-Read PLACEHOLDER
+                                    </option>
+                                    <option value="2020 To-Read PLACEHOLDER">
+                                    2020 To-Read PLACEHOLDER
+                                    </option>
+                                </select>
+                                <button type="submit" onClick={this.handleClickProgress}>Show Progress</button>
                             </form>
                         </div>
-                        <div className="goal-box">
-                            <p>Your goal:</p>
-                            <p>x# books</p>
-                        </div>
-                        <div className="goal-box">
-                            <p>You’ve read 30%.</p>
-                            <p>70% more to go!</p>
+                        <div className="achievement">
+                            {/* <p>`{this.state.readBooks}/{this.state.PLACEHOLDERARRAY.length} read!`</p> */}
+                            <p>0/3 read!</p>
                         </div>
                     </div>
                 </section>
