@@ -3,14 +3,9 @@ import axios from 'axios';
 import Qs from 'qs';
 import { FaStar, FaTimesCircle }  from 'react-icons/fa';
 import firebase from 'firebase';
-<<<<<<< HEAD
-
-// import MapThroughLi from './MapThroughLi'; 
-=======
 import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
->>>>>>> master
 const convert = require('xml-js');
 
 
@@ -132,12 +127,6 @@ componentDidMount(){
             list.books.push(bookToAddObj);
             dbUserList.set(list);
         }
-
-
-
-    
-
-
 
     }
 
@@ -292,13 +281,9 @@ componentDidMount(){
                         <h2 ref={this.myRef}>Search Results</h2>
                         <p>Enter your search above</p>
                         <div className="display-container">
-<<<<<<< HEAD
-
-                            {this.state.userBooks.map(book =>{
-                                let currentBook = book;
-=======
+                                
                             {!this.state.done === true ? (<ReactLoading type={"bars"} color={"black"} className={"preloader"}/>) : (this.state.userBooks.map(book =>{
->>>>>>> master
+                                let currentBook = book;
                                 return (
                                     <div key={book.key} className='book-info'>
 
@@ -376,32 +361,27 @@ componentDidMount(){
                                 {this.state.createList.map(list => {
                                     
                                     return (
-<<<<<<< HEAD
 
                                       <li key={list.key} className="list-title">
 
                                           <h3>{list.name}</h3>
                                           
+                                          {list.books !== undefined ? 
                                           <ul>
                                               {list.books.map((book, index) => {
                                                   return (
 
                                                     <li key={index}>{book.title}</li>
                                                   )
-
+                                                    
                                               })}
                                           
                                           </ul>
+                                        : null}
 
                                           <FaTimesCircle onClick={() => {this.removeList(list.key)}}/> 
 
                                       </li>  
-=======
-                                        <li key={book.key} className="list-title">
-                                            <p>{book.name} </p>
-                                            <FaTimesCircle onClick={() => {this.removeList(book.key)}}/> 
-                                        </li>  
->>>>>>> master
                                     )
                                 })}
                             </ul>
