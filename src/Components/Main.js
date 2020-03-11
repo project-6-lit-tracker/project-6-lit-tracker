@@ -26,6 +26,9 @@ componentDidMount(){
 // Create a variable that holds a reference to our database
     const dbRef = firebase.database().ref();
 
+
+    
+
 // here we add an event listener to that variable that will fire every time there is a change in the database
 
 // this event listener takes a callback function which we will use to get our data from the database and call it response
@@ -38,12 +41,15 @@ componentDidMount(){
       const newState = [];
       
       for (let key in data){
-          const bookInfo = {
+          console.log(data[key]);
+
+          const listInfo = {
               key: key,
-              name: data[key],
+              name: data[key].name,
+              books: data[key].books,
           }
         
-        newState.push(bookInfo);
+        newState.push(listInfo);
 
       }
       
@@ -72,11 +78,53 @@ componentDidMount(){
 
         const dbUserList = firebase.database().ref();
 
-        dbUserList.push(this.state.fbSearchInput);
+        const pushListObj = {
+            name: this.state.fbSearchInput,
+            books: [],
+
+        }
+       
+        const pushList = dbUserList.push(pushListObj);
 
         this.setState({
             fbSearchInput: '',
         })
+
+    }
+
+
+    addBookToList = (list, bookToAdd) => {
+
+    
+        console.log(list, bookToAdd);
+
+        const dbUserList = firebase.database().ref(list.key);
+
+        const bookToAddObj = {
+
+            title: bookToAdd,
+            read: false 
+        }
+        
+        console.log(list.books);
+
+        if (list.books === undefined){
+            list.books = [];
+            list.books.push(bookToAddObj);
+            console.log(list);
+            dbUserList.set(list);
+
+        } else {
+
+            list.books.push(bookToAddObj);
+            dbUserList.set(list);
+        }
+
+
+
+    
+
+
 
     }
 
@@ -140,7 +188,7 @@ componentDidMount(){
         
         
         const userSearchRes = [...condensedRes2];
-        console.log(userSearchRes);
+        
         
 
        
@@ -203,16 +251,16 @@ componentDidMount(){
                             </label>
 
                             <input 
-                        type="search" 
-                        placeholder="Search by title or author"
-                        id= "search"
-                        name="search"
-                        aria-label="Search through site content"
-                        title="Search by title or author"
-                        required
-                        onChange={this.handleChange}
-                        value={this.state.searchInput}>
-                        </input>
+                            type="search" 
+                            placeholder="Search by title or author"
+                            id= "search"
+                            name="search"
+                            aria-label="Search through site content"
+                            title="Search by title or author"
+                            required
+                            onChange={this.handleChange}
+                            value={this.state.searchInput}>
+                            </input>
 
                             <button type="submit">Search</button>
 
@@ -223,11 +271,12 @@ componentDidMount(){
 
                 <div className="search-results-container">
 
-                    <div className="search-results">
+                    <section className="search-results">
                         <h2>Search Results</h2>
                         <div className="display-container">
 
                             {this.state.userBooks.map(book =>{
+                                let currentBook = book;
                                 return (
                                     <div key={book.key} className='book-info'>
 
@@ -235,7 +284,9 @@ componentDidMount(){
 
                                         <span><p>{book.author} </p></span>
 
-                                        <img src={`${book.imageUrl}`} alt={`Cover art for ${book.title}`}/>
+                                        <img 
+                                        src={`${book.imageUrl}`} 
+                                        alt={`Cover art for ${book.title}`}/>
 
                                         <div className="icon">
 
@@ -246,10 +297,15 @@ componentDidMount(){
                                         <div className="book-list-container">
 
                                             <ul className="book-list">
-                                            {this.state.createList.map(book => {
+                                            {this.state.createList.map(list => {
                                                 return (
-                                                    <li key={book.key}>
-                                                        <p>Add to {book.name}</p>    
+                                                    <li 
+                                                    key={list.key}
+
+                                                    onClick={()=> {this.addBookToList(list, currentBook.title)}}>
+
+                                                        <p>Add to {list.name}</p>
+                                                            
                                                     </li>  
                                                 )
                                                 })}
@@ -267,9 +323,9 @@ componentDidMount(){
 
                         </div>
                         
-                    </div>
+                    </section>
 
-                    <div className="make-a-list">
+                    <section className="make-a-list">
             
                         <form action="submit" onSubmit={this.handleFirebaseSubmit}>
 
@@ -295,24 +351,69 @@ componentDidMount(){
                         <div className="placeholder">
                             <ul>
                             {/* <p>List of books will appear here.</p> */}
-                                {this.state.createList.map(book => {
+                                {console.log(this.state.createList)}
+                               
+                                {this.state.createList.map(list => {
+                                    
                                     return (
-                                      <li key={book.key} className="list-title">
 
-                                          <p>{book.name} </p>
+                                      <li key={list.key} className="list-title">
 
-                                          <FaTimesCircle onClick={() => {this.removeList(book.key)}}/> 
+                                          <h3>{list.name}</h3>
+                                          <ul>
+                                             <li>{list.books[0].title}</li>
+                                          </ul>
+
+                                          <FaTimesCircle onClick={() => {this.removeList(list.key)}}/> 
 
                                       </li>  
                                     )
                                 })}
                             </ul>
-
+{/* make a function component in the ul and map throough the lis it in that component */}
 
                         </div>
-                    </div>
+                    </section>
 
                 </div>
+
+                <section className="goals">
+                    <div className="wrapper goal-container">
+                        <div className="goal-box goal1">
+                            <p>Set a Goal!</p>
+                            <p>How many books do you want to read this month?</p>
+                            <form action="submit">
+
+                                <label
+                                className="sr-only"
+                                htmlFor="set-goal">
+                                </label>
+
+                                <input 
+                                type="text" 
+                                id= "set-goal"
+                                className="set-goal"
+                                aria-label="Enter goal number of books"
+                                title="Enter goal number of books"
+                                required
+                                // value={this.state.fbSearchInput}
+                                // onChange={this.handleFirebaseChange}
+                                >
+                                </input>
+
+                                <button type="submit">Enter Goal</button>
+
+                            </form>
+                        </div>
+                        <div className="goal-box">
+                            <p>Your goal: x# books</p>
+                        </div>
+                        <div className="goal-box">
+                            <p>You’ve read 30%.</p>
+                            <p>70% more to go!</p>
+                        </div>
+                    </div>
+                </section>
 
             </main>
             

@@ -79,8 +79,8 @@ class App extends Component {
     
 
       const newRes = [...condensedRes];
-
-
+ 
+      console.log(result2);
 
       // Grab individual book information from API 
       newRes.map((book) => {
