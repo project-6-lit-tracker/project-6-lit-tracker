@@ -79,8 +79,8 @@ class App extends Component {
     
 
       const newRes = [...condensedRes];
-
-
+ 
+      console.log(result2);
 
       // Grab individual book information from API 
       newRes.map((book) => {
@@ -118,12 +118,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <ul>
-          {this.state.books.map((book) => {        
-            return <li>{book}</li>
-          })}
-        </ul> */}
-        {/* Firebase Setup */}
+ 
         <Header />
 
         <Main />
