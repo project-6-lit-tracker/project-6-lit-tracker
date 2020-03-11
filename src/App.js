@@ -86,17 +86,17 @@ class App extends Component {
       newRes.map((book) => {
 
         return (
-          bookResults.push({
-            title: book.elements[8].elements[1].elements[0].text,
+            bookResults.push({
+              title: book.elements[8].elements[1].elements[0].text,
 
-            author: book.elements[8].elements[2].elements[1].elements[0].text,
+              author: book.elements[8].elements[2].elements[1].elements[0].text,
 
-            key: book.elements[8].elements[0].elements[0].text,
+              key: book.elements[8].elements[0].elements[0].text,
 
-            rating: book.elements[7].elements[0].text,
-            
-            imageUrl: book.elements[8].elements[3].elements[0].text
-          })
+              rating: book.elements[7].elements[0].text,
+              
+              imageUrl: book.elements[8].elements[3].elements[0].text
+            })
         );
       })
     
