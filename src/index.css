@@ -189,8 +189,10 @@ svg {
 
 .book-list p {
   color: #E76155;
+  cursor: pointer;
 }
-
+/* HOVER HERE  */
+ 
 
 
 /* To Read Lists */
