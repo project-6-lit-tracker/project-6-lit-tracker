@@ -123,6 +123,10 @@ footer a {
 }
 
 /* Search Results */
+.preloader {
+  margin: 0 auto;
+}
+
 .search-results-container {
   height: 100vh;
   padding: 75px 0;
@@ -186,7 +190,7 @@ svg {
 .book-list p {
   color: #E76155;
 }
- 
+
 
 
 /* To Read Lists */
@@ -249,8 +253,9 @@ input[type="text"] {
   margin-top: 20px;
 }
 
-
-/* Media Queries */
+html {
+  scroll-behavior: smooth;
+}
 
 /* Small desktop */
 @media(max-width: 1200px) {
