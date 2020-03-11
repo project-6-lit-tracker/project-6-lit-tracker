@@ -3,8 +3,14 @@ import axios from 'axios';
 import Qs from 'qs';
 import { FaStar, FaTimesCircle }  from 'react-icons/fa';
 import firebase from 'firebase';
+<<<<<<< HEAD
 
 // import MapThroughLi from './MapThroughLi'; 
+=======
+import FadeIn from "react-fade-in";
+import Lottie from "react-lottie";
+import ReactLoading from "react-loading";
+>>>>>>> master
 const convert = require('xml-js');
 
 
@@ -15,12 +21,16 @@ class Main extends Component {
     constructor (props){
 
         super();
-
+        
+        this.myRef = React.createRef()
+        
         this.state = {
             userBooks: [],
             searchInput: "",
             fbSearchInput: "",
             createList: [],
+        // Setting state for the preloader
+            done: true
         }
     }
 
@@ -152,7 +162,10 @@ componentDidMount(){
 // Second axios Form Submit
     handleFormSubmit = (e) => {
         e.preventDefault();
-    
+    // Setting state for the preloader
+        this.setState({
+            done: false
+        })
         axios ({
             url: 'https://proxy.hackeryou.com',
     
@@ -194,7 +207,6 @@ componentDidMount(){
         
         
 
-       
     // Push search results into empty array
         userSearchRes.map(book => {
 
@@ -224,18 +236,20 @@ componentDidMount(){
             })
             console.log(userSearchResults);
             
-            
+        this.scrollToMyRef(this.myRef);
         })
+    // Setting state for the preloader
+        .then(() => this.setState({ done: true }));
         
-   
+
     // Clear search input
         this.setState({
             searchInput: "",
         })
-
-    
     }
 
+    //Function to scroll
+    scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
 
     render(){
@@ -246,7 +260,7 @@ componentDidMount(){
                 <section className="landing">
                     <div className="wrapper">
 
-                        <form action="submit" onSubmit={this.handleFormSubmit}>
+                        <form className="search-form" action="submit" onSubmit={this.handleFormSubmit}>
 
                             <label
                             className="sr-only"
@@ -275,11 +289,16 @@ componentDidMount(){
                 <div className="search-results-container">
 
                     <section className="search-results">
-                        <h2>Search Results</h2>
+                        <h2 ref={this.myRef}>Search Results</h2>
+                        <p>Enter your search above</p>
                         <div className="display-container">
+<<<<<<< HEAD
 
                             {this.state.userBooks.map(book =>{
                                 let currentBook = book;
+=======
+                            {!this.state.done === true ? (<ReactLoading type={"bars"} color={"black"} className={"preloader"}/>) : (this.state.userBooks.map(book =>{
+>>>>>>> master
                                 return (
                                     <div key={book.key} className='book-info'>
 
@@ -319,18 +338,16 @@ componentDidMount(){
 
                                     </div>
 
-
                                 )
                         
-                            })}
-
+                            }))}
                         </div>
                         
                     </section>
 
                     <section className="make-a-list">
             
-                        <form action="submit" onSubmit={this.handleFirebaseSubmit}>
+                        <form className="list-form" action="submit" onSubmit={this.handleFirebaseSubmit}>
 
                             <label
                             className="sr-only"
@@ -359,6 +376,7 @@ componentDidMount(){
                                 {this.state.createList.map(list => {
                                     
                                     return (
+<<<<<<< HEAD
 
                                       <li key={list.key} className="list-title">
 
@@ -378,6 +396,12 @@ componentDidMount(){
                                           <FaTimesCircle onClick={() => {this.removeList(list.key)}}/> 
 
                                       </li>  
+=======
+                                        <li key={book.key} className="list-title">
+                                            <p>{book.name} </p>
+                                            <FaTimesCircle onClick={() => {this.removeList(book.key)}}/> 
+                                        </li>  
+>>>>>>> master
                                     )
                                 })}
                             </ul>
@@ -393,7 +417,7 @@ componentDidMount(){
                         <div className="goal-box goal1">
                             <p>Set a Goal!</p>
                             <p>How many books do you want to read this month?</p>
-                            <form action="submit">
+                            <form className="goal-form" action="submit">
 
                                 <label
                                 className="sr-only"
@@ -417,7 +441,8 @@ componentDidMount(){
                             </form>
                         </div>
                         <div className="goal-box">
-                            <p>Your goal: x# books</p>
+                            <p>Your goal:</p>
+                            <p>x# books</p>
                         </div>
                         <div className="goal-box">
                             <p>You’ve read 30%.</p>
