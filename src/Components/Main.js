@@ -241,7 +241,6 @@ componentDidMount(){
                             {!this.state.done === true ? (<ReactLoading type={"bars"} color={"black"} className={"preloader"}/>) : (this.state.userBooks.map(book =>{
                                 return (
                                     <div key={book.key} className='book-info'>
-
                                         <p>{book.title}</p>
 
                                         <span><p>{book.author} </p></span>
