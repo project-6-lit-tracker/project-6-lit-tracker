@@ -14,8 +14,10 @@ class Main extends Component {
 
     constructor (props){
 
-        super(props);
-
+        super();
+        
+        this.myRef = React.createRef()
+        
         this.state = {
             userBooks: [],
             searchInput: "",
@@ -180,6 +182,7 @@ componentDidMount(){
             })
             console.log(userSearchResults);
             
+        this.scrollToMyRef(this.myRef);
         })
     // Setting state for the preloader
         .then(() => this.setState({ done: true }));
@@ -191,6 +194,8 @@ componentDidMount(){
         })
     }
 
+    //Function to scroll
+    scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
 
     render(){
@@ -230,7 +235,7 @@ componentDidMount(){
                 <div className="search-results-container">
 
                     <section className="search-results">
-                        <h2>Search Results</h2>
+                        <h2 ref={this.myRef}>Search Results</h2>
                         <p>Enter your search above</p>
                         <div className="display-container">
                             {!this.state.done === true ? (<ReactLoading type={"bars"} color={"black"} className={"preloader"}/>) : (this.state.userBooks.map(book =>{
