@@ -13,7 +13,7 @@ const Footer = () => {
             rel="noopener noreferrer" 
             tabIndex="0"
             aria-hidden="true"
-            title="afuadeborahcodes.com"
+            title="afuadeborahcodes.com" 
             alt="Go to Afua's page."
             >Afua Frimpong </a>
 

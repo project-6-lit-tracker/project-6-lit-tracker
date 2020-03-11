@@ -206,7 +206,7 @@ componentDidMount(){
                 <section className="landing">
                     <div className="wrapper">
 
-                        <form action="submit" onSubmit={this.handleFormSubmit}>
+                        <form className="search-form" action="submit" onSubmit={this.handleFormSubmit}>
 
                             <label
                             className="sr-only"
@@ -282,7 +282,7 @@ componentDidMount(){
 
                     <section className="make-a-list">
             
-                        <form action="submit" onSubmit={this.handleFirebaseSubmit}>
+                        <form className="list-form" action="submit" onSubmit={this.handleFirebaseSubmit}>
 
                             <label
                             className="sr-only"
@@ -327,7 +327,7 @@ componentDidMount(){
                         <div className="goal-box goal1">
                             <p>Set a Goal!</p>
                             <p>How many books do you want to read this month?</p>
-                            <form action="submit">
+                            <form className="goal-form" action="submit">
 
                                 <label
                                 className="sr-only"
@@ -351,7 +351,8 @@ componentDidMount(){
                             </form>
                         </div>
                         <div className="goal-box">
-                            <p>Your goal: x# books</p>
+                            <p>Your goal:</p>
+                            <p>x# books</p>
                         </div>
                         <div className="goal-box">
                             <p>You’ve read 30%.</p>
