@@ -3,6 +3,9 @@ import axios from 'axios';
 import Qs from 'qs';
 import { FaStar, FaTimesCircle }  from 'react-icons/fa';
 import firebase from 'firebase';
+import FadeIn from "react-fade-in";
+import Lottie from "react-lottie";
+import ReactLoading from "react-loading";
 const convert = require('xml-js');
 
 
@@ -11,13 +14,15 @@ class Main extends Component {
 
     constructor (props){
 
-        super();
+        super(props);
 
         this.state = {
             userBooks: [],
             searchInput: "",
             fbSearchInput: "",
             createList: [],
+        // Setting state for the preloader
+            done: true
         }
     }
 
@@ -101,7 +106,10 @@ componentDidMount(){
 // Second axios Form Submit
     handleFormSubmit = (e) => {
         e.preventDefault();
-    
+    // Setting state for the preloader
+        this.setState({
+            done: false
+        })
         axios ({
             url: 'https://proxy.hackeryou.com',
     
@@ -143,7 +151,6 @@ componentDidMount(){
         console.log(userSearchRes);
         
 
-       
     // Push search results into empty array
         userSearchRes.map(book => {
 
@@ -173,16 +180,15 @@ componentDidMount(){
             })
             console.log(userSearchResults);
             
-            
         })
+    // Setting state for the preloader
+        .then(() => this.setState({ done: true }));
         
-   
+
     // Clear search input
         this.setState({
             searchInput: "",
         })
-
-    
     }
 
 
@@ -225,9 +231,9 @@ componentDidMount(){
 
                     <section className="search-results">
                         <h2>Search Results</h2>
+                        <p>Enter your search above</p>
                         <div className="display-container">
-
-                            {this.state.userBooks.map(book =>{
+                            {!this.state.done === true ? (<ReactLoading type={"bars"} color={"black"} className={"preloader"}/>) : (this.state.userBooks.map(book =>{
                                 return (
                                     <div key={book.key} className='book-info'>
 
@@ -262,11 +268,9 @@ componentDidMount(){
 
                                     </div>
 
-
                                 )
                         
-                            })}
-
+                            }))}
                         </div>
                         
                     </section>
@@ -299,10 +303,10 @@ componentDidMount(){
                             {/* <p>List of books will appear here.</p> */}
                                 {this.state.createList.map(book => {
                                     return (
-                                      <li key={book.key} className="list-title">
-                                          <p>{book.name} </p>
-                                          <FaTimesCircle onClick={() => {this.removeList(book.key)}}/> 
-                                      </li>  
+                                        <li key={book.key} className="list-title">
+                                            <p>{book.name} </p>
+                                            <FaTimesCircle onClick={() => {this.removeList(book.key)}}/> 
+                                        </li>  
                                     )
                                 })}
                             </ul>
