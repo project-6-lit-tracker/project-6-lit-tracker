@@ -6,6 +6,8 @@ import firebase from 'firebase';
 import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
+import SweetAlert from 'sweetalert-react';
+import 'sweetalert/dist/sweetalert.css';
 const convert = require('xml-js');
 
 
@@ -225,8 +227,13 @@ componentDidMount(){
                         value={this.state.searchInput}>
                         </input>
 
-                            <button type="submit">Search</button>
-
+                            <button type="submit" onClick={() => this.setState({ show: true })}>Search</button>
+                            <SweetAlert
+                                show={this.state.show}
+                                title="Oops!"
+                                text="Please search something"
+                                onConfirm={() => this.setState({ show: false })}
+                            />
                         </form>
 
                     </div>
@@ -299,8 +306,13 @@ componentDidMount(){
                             onChange={this.handleFirebaseChange}>
                             </input>
 
-                            <button type="submit">Create List</button>
-
+                            <button type="submit" onClick={() => this.setState({ show: true })}>Create List</button>
+                            <SweetAlert
+                                show={this.state.show}
+                                title="Oops!"
+                                text="Please name your list"
+                                onConfirm={() => this.setState({ show: false })}
+                            />
                         </form>
                         
                         <div className="placeholder">
@@ -310,7 +322,13 @@ componentDidMount(){
                                     return (
                                         <li key={book.key} className="list-title">
                                             <p>{book.name} </p>
-                                            <FaTimesCircle onClick={() => {this.removeList(book.key)}}/> 
+                                            <FaTimesCircle onClick={() =>  { this.removeList(book.key); this.setState({ show: true })}}/> 
+                                            <SweetAlert
+                                                show={this.state.show}
+                                                title="Confirm Remove!"
+                                                text="Are you sure you want to remove this book?"
+                                                onConfirm={() => this.setState({ show: false })}
+                                            />
                                         </li>  
                                     )
                                 })}
@@ -346,8 +364,13 @@ componentDidMount(){
                                 >
                                 </input>
 
-                                <button type="submit">Enter Goal</button>
-
+                                <button type="submit" onClick={() => this.setState({ show: true })}>Show Progress</button>
+                                <SweetAlert
+                                    show={this.state.show}
+                                    title="Oops!"
+                                    text="Please choose a list"
+                                    onConfirm={() => this.setState({ show: false })}
+                                />
                             </form>
                         </div>
                         <div className="goal-box">
