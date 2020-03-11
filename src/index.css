@@ -388,22 +388,6 @@ html {
 }
 
 
-/* Pop up sweet alert styling - try with SweetAlert or add className="swal" to each alert:
-
-SweetAlert .swal-icon--warning {
-    background-color: #E76155;
-}
-
-SweetAlert .swal-title {
-    font-family: 'Josefin Sans', sans-serif;
-}
-
-SweetAlert .swal-text {
-    color: #F0B377;
-    font-family: 'Lato', sans-serif;
-}
-
-*/
 
 /* Colours */
 /* #E76155 */

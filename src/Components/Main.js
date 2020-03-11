@@ -306,13 +306,13 @@ componentDidMount(){
                             onChange={this.handleFirebaseChange}>
                             </input>
 
-                            <button type="submit" onClick={() => this.setState({ show: true })}>Create List</button>
-                            <SweetAlert
+                            <button type="submit">Create List</button>
+                            {/* <SweetAlert
                                 show={this.state.show}
                                 title="Oops!"
                                 text="Please name your list"
                                 onConfirm={() => this.setState({ show: false })}
-                            />
+                            /> */}
                         </form>
                         
                         <div className="placeholder">
@@ -322,13 +322,15 @@ componentDidMount(){
                                     return (
                                         <li key={book.key} className="list-title">
                                             <p>{book.name} </p>
-                                            <FaTimesCircle onClick={() =>  { this.removeList(book.key); this.setState({ show: true })}}/> 
-                                            <SweetAlert
+                                            <FaTimesCircle onClick={() =>  { this.removeList(book.key) }}/> 
+
+                                            {/* <FaTimesCircle onClick={() => { this.removeList(book.key); this.setState({ show: true }) }} />  */}
+                                            {/* <SweetAlert
                                                 show={this.state.show}
                                                 title="Confirm Remove!"
                                                 text="Are you sure you want to remove this book?"
                                                 onConfirm={() => this.setState({ show: false })}
-                                            />
+                                            /> */}
                                         </li>  
                                     )
                                 })}
@@ -364,13 +366,13 @@ componentDidMount(){
                                 >
                                 </input>
 
-                                <button type="submit" onClick={() => this.setState({ show: true })}>Show Progress</button>
-                                <SweetAlert
+                                <button type="submit">Show Progress</button>
+                                {/* <SweetAlert
                                     show={this.state.show}
                                     title="Oops!"
                                     text="Please choose a list"
                                     onConfirm={() => this.setState({ show: false })}
-                                />
+                                /> */}
                             </form>
                         </div>
                         <div className="goal-box">
