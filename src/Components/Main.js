@@ -4,7 +4,7 @@ import Qs from 'qs';
 import { FaStar, FaTimesCircle }  from 'react-icons/fa';
 import firebase from 'firebase';
 
-import Map from  './Map';
+// import MapThroughLi from './MapThroughLi'; 
 const convert = require('xml-js');
 
 
@@ -365,7 +365,14 @@ componentDidMount(){
                                           <h3>{list.name}</h3>
                                           
                                           <ul>
-                                             <li>{list.books[0].title}</li>
+                                              {list.books.map((book, index) => {
+                                                  return (
+
+                                                    <li key={index}>{book.title}</li>
+                                                  )
+
+                                              })}
+                                          
                                           </ul>
 
                                           <FaTimesCircle onClick={() => {this.removeList(list.key)}}/> 
@@ -431,3 +438,6 @@ componentDidMount(){
 export default Main;
 
 // Click on Add to List, title of the book will populate the placeholder in the list section
+// Goals
+
+// Toggle button class w ternary between true and false 
