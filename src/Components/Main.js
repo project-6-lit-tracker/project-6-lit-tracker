@@ -12,7 +12,9 @@ class Main extends Component {
     constructor (props){
 
         super();
-
+        
+        this.myRef = React.createRef()
+        
         this.state = {
             userBooks: [],
             searchInput: "",
@@ -173,18 +175,19 @@ componentDidMount(){
             })
             console.log(userSearchResults);
             
-            
+        this.scrollToMyRef(this.myRef);
         })
         
-   
+
     // Clear search input
         this.setState({
             searchInput: "",
         })
 
-    
     }
 
+    //Function to scroll
+    scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
 
     render(){
@@ -224,7 +227,7 @@ componentDidMount(){
                 <div className="search-results-container">
 
                     <section className="search-results">
-                        <h2>Search Results</h2>
+                        <h2 ref={this.myRef}>Search Results</h2>
                         <div className="display-container">
 
                             {this.state.userBooks.map(book =>{
