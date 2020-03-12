@@ -3,12 +3,9 @@ import axios from 'axios';
 import Qs from 'qs';
 import { FaStar, FaTimesCircle, FaTimes }  from 'react-icons/fa';
 import firebase from 'firebase';
-import FadeIn from "react-fade-in";
-import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
+import Swal from "sweetalert2";
 const convert = require('xml-js');
-
-
 
 
 class Main extends Component {
@@ -45,25 +42,24 @@ componentDidMount(){
     dbRef.on('value', (response) => {
 
 // here we use Firebase's .val() method to parse our database info the way we want it
-      const data = response.val();
+    const data = response.val();
 
-      const newState = [];
-      
-      for (let key in data){
-          console.log(data[key]);
+    const newState = [];
+    
+        for (let key in data){
+            console.log(data[key]);
 
-          const listInfo = {
-              key: key,
-              name: data[key].name,
-              books: data[key].books,
-          }
-
+        const listInfo = {
+            key: key,
+            name: data[key].name,
+            books: data[key].books,
+        }
         
         newState.push(listInfo);
 
-      }
-      
-    // Change the Initial State
+    }
+
+  // Change the Initial State
     this.setState({
         createList: newState,
         fbSearchInput: ''
@@ -71,7 +67,7 @@ componentDidMount(){
     console.log(newState.books);
 
     console.log(response.val());
-      
+    
     })
 }
 
@@ -94,11 +90,10 @@ componentDidMount(){
         const pushListObj = {
             name: this.state.fbSearchInput,
             books: [],
-
         }
-       
-        const pushList = dbUserList.push(pushListObj);
 
+        const pushList = dbUserList.push(pushListObj);
+        
         this.setState({
             fbSearchInput: '',
         })
@@ -136,12 +131,24 @@ componentDidMount(){
     }
     
 
-// Personal User List Removal 
+// Firebase Removal 
     removeList = (listName) => {
-        const dbRef = firebase.database().ref();
-
-        dbRef.child(listName).remove();
-    }
+        
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#CCCC97",
+            cancelButtonColor: "#E76155",
+            confirmButtonText: "Yes, delete it!"
+        }).then(result => {
+            if(result.value) {
+                const dbRef = firebase.database().ref();
+                dbRef.child(listName).remove();
+            }
+        });
+    };
 
 // Remove selected books from user lists
     // removeBook = (bookName, titleObject ) => {
@@ -178,7 +185,23 @@ componentDidMount(){
 // Second axios Form Submit
     handleFormSubmit = (e) => {
         e.preventDefault();
+        // Error handling:
+            this.state.searchInput
+                ?
+            // axios call if complete
+                    this.confirmSubmit()
+                :
+        // if either is falsy, "", produce
+        // Sweet alert for no input
+            Swal.fire({
+                title: 'Please search a book.',
+                confirmButtonColor: "#CCCC97",
+            })
+    }
+
+    confirmSubmit = () => {
     // Setting state for the preloader
+
         this.setState({
             done: false
         })
@@ -290,13 +313,13 @@ componentDidMount(){
                             name="search"
                             aria-label="Search through site content"
                             title="Search by title or author"
-                            required
+                            
                             onChange={this.handleChange}
                             value={this.state.searchInput}>
                             </input>
 
                             <button type="submit">Search</button>
-
+                            
                         </form>
 
                     </div>
@@ -377,14 +400,14 @@ componentDidMount(){
                             </input>
 
                             <button type="submit">Create List</button>
-
+                            
                         </form>
                         
                         <div className="list-background">
                             <ul>
                         
- 
-                               
+
+
                                 {this.state.createList.map(list => {
                                     
                                     return (
@@ -406,9 +429,9 @@ componentDidMount(){
                                                     </div>
                                                   )
                                                     
-                                              })}
-                                          
-                                          </ul>
+                                                })}
+                                        
+                                            </ul>
                                         : null}
 
                                            
@@ -423,40 +446,45 @@ componentDidMount(){
 
                 </div>
 
-                <section className="goals">
-                    <div className="wrapper goal-container">
-                        <div className="goal-box goal1">
-                            <p>Set a Goal!</p>
-                            <p>How many books do you want to read this month?</p>
-                            <form className="goal-form" action="submit">
-
+                <section className="progress">
+                    <div className="wrapper progress-container">
+                        <div className="progress-box progress1">
+                            <form className="progress-form" action="submit">
                                 <label
-                                className="sr-only"
-                                htmlFor="set-goal">
+                                htmlFor="select-list">
+                                    Select a list to show reading progress
                                 </label>
+                                <div className="select-bottom">
+                                    <select
+                                    id= "list-select-dropdown"
+                                    className="list-select-dropdown"
+                                    aria-label="Select a list to show reading progress"
+                                    title="Select a list to show reading progress"
+                                    required
+                                    value={this.state.fbSearchInput}
+                                    onChange={this.handleFirebaseChange}
+                                    >
+                                        <option value="" disabled>Select a List</option>
+                                        {this.state.createList.map((list, selectIndex) => {
+                                            return (
+                                                <option key={selectIndex} value={list.name}>{list.name}</option>
+                                            );
+                                        })}
+                                    </select>
 
-                                <input 
-                                type="text" 
-                                id= "set-goal"
-                                className="set-goal"
-                                aria-label="Enter goal number of books"
-                                title="Enter goal number of books"
-                                required
-                                value={this.state.fbSearchInput}
-                                onChange={this.handleFirebaseChange}>
-                                </input>
-
-                                <button type="submit">Enter Goal</button>
+                                    <button type="submit">Show Progress</button>
+                                </div>
 
                             </form>
                         </div>
-                        <div className="goal-box">
-                            <p>Your goal:</p>
-                            <p>x# books</p>
-                        </div>
-                        <div className="goal-box">
-                            <p>You’ve read 30%.</p>
-                            <p>70% more to go!</p>
+                        <div className="progress-box books-read">
+                            {/* {this.state.createList.map((index) => {
+                                console.log(this.state.createList)
+                                return ( */}
+                                    <p>0/{this.state.createList.length} Read</p>
+                            {/* {console.log(this.state.createList)}
+                            {console.log(this.state.createList[0])} */}
+                            {/* We realize it's showing the number of lists, not the number of books. There is a layer between the index and books that we will need to work out at a later date. Would love to get some feedback here. */}
                         </div>
                     </div>
                 </section>
