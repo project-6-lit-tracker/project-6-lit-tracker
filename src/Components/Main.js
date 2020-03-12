@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Qs from 'qs';
-import { FaStar, FaTimesCircle }  from 'react-icons/fa';
+import { FaStar, FaTimesCircle, FaTimes }  from 'react-icons/fa';
 import firebase from 'firebase';
 import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
@@ -21,11 +21,15 @@ class Main extends Component {
         
         this.state = {
             userBooks: [],
+            // User searched books
             searchInput: "",
+            // Grab user axios search value
             fbSearchInput: "",
+            // Grab user Firebase search value
             createList: [],
-        // Setting state for the preloader
+            // User selected books for personal lists
             done: true
+            // Setting state for the preloader
         }
     }
 
@@ -33,9 +37,6 @@ class Main extends Component {
 componentDidMount(){
 // Create a variable that holds a reference to our database
     const dbRef = firebase.database().ref();
-
-
-    
 
 // here we add an event listener to that variable that will fire every time there is a change in the database
 
@@ -56,21 +57,25 @@ componentDidMount(){
               name: data[key].name,
               books: data[key].books,
           }
+
         
         newState.push(listInfo);
 
       }
       
-  // Change the Initial State
+    // Change the Initial State
     this.setState({
         createList: newState,
         fbSearchInput: ''
     })
-    console.log(newState);
+    console.log(newState.books);
+
     console.log(response.val());
       
     })
 }
+
+// Thank you to Sherry fir assistance here
 
 // Create List Handler
     handleFirebaseChange = (eventFb) => {
@@ -100,7 +105,7 @@ componentDidMount(){
 
     }
 
-
+// Add books from API to user created lists
     addBookToList = (list, bookToAdd) => {
 
     
@@ -119,7 +124,7 @@ componentDidMount(){
         if (list.books === undefined){
             list.books = [];
             list.books.push(bookToAddObj);
-            console.log(list);
+          
             dbUserList.set(list);
 
         } else {
@@ -129,22 +134,44 @@ componentDidMount(){
         }
 
     }
+    
 
-// Firebase Removal 
-    removeList = (listTitle) => {
+// Personal User List Removal 
+    removeList = (listName) => {
         const dbRef = firebase.database().ref();
 
-        dbRef.child(listTitle).remove();
+        dbRef.child(listName).remove();
     }
 
+// Remove selected books from user lists
+    // removeBook = (bookName, titleObject ) => {
+    //     let bookKey;
+    //     // const removeMe = bookKey[0].books[0].title;
+    //     const userBook = this.state.createList;
+    //     const userBookCopy = [...userBook];
 
+    //     console.log(userBookCopy[0].books);
+        
+    //     for(book in userBookCopy){
+    //         if (userBookCopy[book] === bookName.key){
+
+    //         }
+    //     }
+    //     // console.log(removeMe);
+    
+    //     // const dbUserList = firebase.database().ref();
+
+    //     // dbUserList.child(bookKey).remove();
+    // }
+    // Thank you to Sui and Opjot for help here
+    // Gave many tries, but could not acces the nested books object. As result, the x icon beside each book is decorative. Would appreciate some feeback here, thank you.
 
 // Second axios Search Handler
     handleChange = (e) => {
         this.setState({
             searchInput: e.target.value,
         })
-        console.log(e.target.value);
+       
     }
 
 
@@ -237,7 +264,7 @@ componentDidMount(){
         })
     }
 
-    //Function to scroll
+//Function to scroll
     scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
 
@@ -353,25 +380,30 @@ componentDidMount(){
 
                         </form>
                         
-                        <div className="placeholder">
+                        <div className="list-background">
                             <ul>
-                            {/* <p>List of books will appear here.</p> */}
-                                {console.log(this.state.createList)}
+                        
+ 
                                
                                 {this.state.createList.map(list => {
                                     
                                     return (
 
                                       <li key={list.key} className="list-title">
+                                          <div className="list-title-icon">
+                                            <h3>{list.name}</h3>
+                                            <FaTimesCircle onClick={() => {this.removeList(list.key)}}/>
+                                          </div>
 
-                                          <h3>{list.name}</h3>
-                                          
                                           {list.books !== undefined ? 
                                           <ul>
                                               {list.books.map((book, index) => {
                                                   return (
-
-                                                    <li key={index}>{book.title}</li>
+                                                    <div className="list-title-icon">
+                                                        <li key={index}>{book.title} 
+                                                        </li>
+                                                        <FaTimes/>
+                                                    </div>
                                                   )
                                                     
                                               })}
@@ -379,13 +411,12 @@ componentDidMount(){
                                           </ul>
                                         : null}
 
-                                          <FaTimesCircle onClick={() => {this.removeList(list.key)}}/> 
+                                           
 
                                       </li>  
                                     )
                                 })}
                             </ul>
-{/* make a function component in the ul and map through the lis in that component */}
 
                         </div>
                     </section>
@@ -411,9 +442,8 @@ componentDidMount(){
                                 aria-label="Enter goal number of books"
                                 title="Enter goal number of books"
                                 required
-                                // value={this.state.fbSearchInput}
-                                // onChange={this.handleFirebaseChange}
-                                >
+                                value={this.state.fbSearchInput}
+                                onChange={this.handleFirebaseChange}>
                                 </input>
 
                                 <button type="submit">Enter Goal</button>
@@ -446,3 +476,4 @@ export default Main;
 // Goals
 
 // Toggle button class w ternary between true and false 
+// onClick={() => {this.removeBook(book.title)}}
