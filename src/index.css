@@ -334,6 +334,28 @@ select {
   .list-form input {
     width: 100%;
   }
+
+  .search-results-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 30px;
+  }
+
+  .search-results {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40vh;
+  }
+
+  .make-a-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 30vh;
+    border: none;
+  }
   
 }
 
@@ -416,6 +438,8 @@ select {
     font-size: 0.9rem;
   }
 }
+
+
 
 
 
