@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/project-6-lit-tracker/static/css/main.b3afa83b.chunk.css",
+    "main.css": "/project-6-lit-tracker/static/css/main.5d7ace84.chunk.css",
     "main.js": "/project-6-lit-tracker/static/js/main.7776222f.chunk.js",
     "main.js.map": "/project-6-lit-tracker/static/js/main.7776222f.chunk.js.map",
     "runtime-main.js": "/project-6-lit-tracker/static/js/runtime-main.d22677d5.js",
@@ -8,16 +8,16 @@
     "static/js/2.e995019a.chunk.js": "/project-6-lit-tracker/static/js/2.e995019a.chunk.js",
     "static/js/2.e995019a.chunk.js.map": "/project-6-lit-tracker/static/js/2.e995019a.chunk.js.map",
     "index.html": "/project-6-lit-tracker/index.html",
-    "precache-manifest.0d622733ccf9df52aa780765365f8b4d.js": "/project-6-lit-tracker/precache-manifest.0d622733ccf9df52aa780765365f8b4d.js",
+    "precache-manifest.2b3de4d955447bbd346e17af32b77ffe.js": "/project-6-lit-tracker/precache-manifest.2b3de4d955447bbd346e17af32b77ffe.js",
     "service-worker.js": "/project-6-lit-tracker/service-worker.js",
-    "static/css/main.b3afa83b.chunk.css.map": "/project-6-lit-tracker/static/css/main.b3afa83b.chunk.css.map",
+    "static/css/main.5d7ace84.chunk.css.map": "/project-6-lit-tracker/static/css/main.5d7ace84.chunk.css.map",
     "static/js/2.e995019a.chunk.js.LICENSE.txt": "/project-6-lit-tracker/static/js/2.e995019a.chunk.js.LICENSE.txt",
     "static/media/index.css": "/project-6-lit-tracker/static/media/jessica-ruscello-OQSCtabGkSY-unsplash.1dac52a9.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.d22677d5.js",
     "static/js/2.e995019a.chunk.js",
-    "static/css/main.b3afa83b.chunk.css",
+    "static/css/main.5d7ace84.chunk.css",
     "static/js/main.7776222f.chunk.js"
   ]
 }
