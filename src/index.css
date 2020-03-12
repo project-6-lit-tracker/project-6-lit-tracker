@@ -7,6 +7,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 /* Default Styling */
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -255,9 +256,6 @@ input[type="text"] {
   margin-top: 20px;
 }
 
-html {
-  scroll-behavior: smooth;
-}
 
 /* Small desktop */
 @media(max-width: 1200px) {

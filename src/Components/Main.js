@@ -6,11 +6,8 @@ import firebase from 'firebase';
 import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
-import SweetAlert from 'sweetalert-react';
-import 'sweetalert/dist/sweetalert.css';
+import Swal from "sweetalert2";
 const convert = require('xml-js');
-
-
 
 
 class Main extends Component {
@@ -46,23 +43,23 @@ componentDidMount(){
     dbRef.on('value', (response) => {
 
 // here we use Firebase's .val() method to parse our database info the way we want it
-      const data = response.val();
+    const data = response.val();
 
-      const newState = [];
-      
-      for (let key in data){
-          console.log(data[key]);
+    const newState = [];
+    
+        for (let key in data){
+            console.log(data[key]);
 
-          const listInfo = {
-              key: key,
-              name: data[key].name,
-              books: data[key].books,
-          }
+        const listInfo = {
+            key: key,
+            name: data[key].name,
+            books: data[key].books,
+        }
         
         newState.push(listInfo);
 
-      }
-      
+    }
+
   // Change the Initial State
     this.setState({
         createList: newState,
@@ -70,7 +67,7 @@ componentDidMount(){
     })
     console.log(newState);
     console.log(response.val());
-      
+    
     })
 }
 
@@ -91,11 +88,10 @@ componentDidMount(){
         const pushListObj = {
             name: this.state.fbSearchInput,
             books: [],
-
         }
-       
-        const pushList = dbUserList.push(pushListObj);
 
+        const pushList = dbUserList.push(pushListObj);
+        
         this.setState({
             fbSearchInput: '',
         })
@@ -134,10 +130,22 @@ componentDidMount(){
 
 // Firebase Removal 
     removeList = (listTitle) => {
-        const dbRef = firebase.database().ref();
-
-        dbRef.child(listTitle).remove();
-    }
+        
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#CCCC97",
+            cancelButtonColor: "#E76155",
+            confirmButtonText: "Yes, delete it!"
+        }).then(result => {
+            if(result.value) {
+                const dbRef = firebase.database().ref();
+                dbRef.child(listTitle).remove();
+            }
+        });
+    };
 
 
 
@@ -153,7 +161,23 @@ componentDidMount(){
 // Second axios Form Submit
     handleFormSubmit = (e) => {
         e.preventDefault();
+        // Error handling:
+            this.state.searchInput
+                ?
+            // axios call if complete
+                    this.confirmSubmit()
+                :
+        // if either is falsy, "", produce
+        // Sweet alert for no input
+            Swal.fire({
+                title: 'Please search a book.',
+                confirmButtonColor: "#CCCC97",
+            })
+    }
+
+    confirmSubmit = () => {
     // Setting state for the preloader
+
         this.setState({
             done: false
         })
@@ -265,18 +289,13 @@ componentDidMount(){
                             name="search"
                             aria-label="Search through site content"
                             title="Search by title or author"
-                            required
+                            
                             onChange={this.handleChange}
                             value={this.state.searchInput}>
                             </input>
 
-                            <button type="submit" onClick={() => this.setState({ show: true })}>Search</button>
-                            <SweetAlert
-                                show={this.state.show}
-                                title="Oops!"
-                                text="Please search something"
-                                onConfirm={() => this.setState({ show: false })}
-                            />
+                            <button type="submit">Search</button>
+                            
                         </form>
 
                     </div>
@@ -357,24 +376,19 @@ componentDidMount(){
                             </input>
 
                             <button type="submit">Create List</button>
-                            {/* <SweetAlert
-                                show={this.state.show}
-                                title="Oops!"
-                                text="Please name your list"
-                                onConfirm={() => this.setState({ show: false })}
-                            /> */}
+                            
                         </form>
                         
                         <div className="placeholder">
                             <ul>
                             {/* <p>List of books will appear here.</p> */}
                                 {console.log(this.state.createList)}
-                               
+                            
                                 {this.state.createList.map(list => {
                                     
                                     return (
 
-                                      <li key={list.key} className="list-title">
+                                        <li key={list.key} className="list-title">
 
                                           <h3>{list.name}</h3>
                                           
@@ -384,16 +398,15 @@ componentDidMount(){
                                                   return (
 
                                                     <li key={index}>{book.title}</li>
-                                                  )
+                                                    )
                                                     
-                                              })}
-                                          
-                                          </ul>
+                                                })}
+                                        
+                                            </ul>
                                         : null}
 
-                                          <FaTimesCircle onClick={() => {this.removeList(list.key)}}/> 
-
-                                      </li>  
+                                            <FaTimesCircle onClick={() => { this.removeList(list.key)}}/> 
+                                        </li>  
                                     )
                                 })}
                             </ul>
@@ -429,12 +442,7 @@ componentDidMount(){
                                 </input>
 
                                 <button type="submit">Show Progress</button>
-                                {/* <SweetAlert
-                                    show={this.state.show}
-                                    title="Oops!"
-                                    text="Please choose a list"
-                                    onConfirm={() => this.setState({ show: false })}
-                                /> */}
+        
                             </form>
                         </div>
                         <div className="goal-box">
