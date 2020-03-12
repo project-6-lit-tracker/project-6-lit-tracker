@@ -4,9 +4,8 @@ import Qs from 'qs';
 import { FaStar, FaTimesCircle, FaTimes }  from 'react-icons/fa';
 import firebase from 'firebase';
 import ReactLoading from "react-loading";
+import Swal from "sweetalert2";
 const convert = require('xml-js');
-
-
 
 
 class Main extends Component {
@@ -43,25 +42,24 @@ componentDidMount(){
     dbRef.on('value', (response) => {
 
 // here we use Firebase's .val() method to parse our database info the way we want it
-      const data = response.val();
+    const data = response.val();
 
-      const newState = [];
-      
-      for (let key in data){
-          console.log(data[key]);
+    const newState = [];
+    
+        for (let key in data){
+            console.log(data[key]);
 
-          const listInfo = {
-              key: key,
-              name: data[key].name,
-              books: data[key].books,
-          }
-
+        const listInfo = {
+            key: key,
+            name: data[key].name,
+            books: data[key].books,
+        }
         
         newState.push(listInfo);
 
-      }
-      
-    // Change the Initial State
+    }
+
+  // Change the Initial State
     this.setState({
         createList: newState,
         fbSearchInput: ''
@@ -69,7 +67,7 @@ componentDidMount(){
     console.log(newState.books);
 
     console.log(response.val());
-      
+    
     })
 }
 
@@ -92,11 +90,10 @@ componentDidMount(){
         const pushListObj = {
             name: this.state.fbSearchInput,
             books: [],
-
         }
-       
-        const pushList = dbUserList.push(pushListObj);
 
+        const pushList = dbUserList.push(pushListObj);
+        
         this.setState({
             fbSearchInput: '',
         })
@@ -134,12 +131,24 @@ componentDidMount(){
     }
     
 
-// Personal User List Removal 
+// Firebase Removal 
     removeList = (listName) => {
-        const dbRef = firebase.database().ref();
-
-        dbRef.child(listName).remove();
-    }
+        
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#CCCC97",
+            cancelButtonColor: "#E76155",
+            confirmButtonText: "Yes, delete it!"
+        }).then(result => {
+            if(result.value) {
+                const dbRef = firebase.database().ref();
+                dbRef.child(listName).remove();
+            }
+        });
+    };
 
 // Remove selected books from user lists
     // removeBook = (bookName, titleObject ) => {
@@ -176,7 +185,23 @@ componentDidMount(){
 // Second axios Form Submit
     handleFormSubmit = (e) => {
         e.preventDefault();
+        // Error handling:
+            this.state.searchInput
+                ?
+            // axios call if complete
+                    this.confirmSubmit()
+                :
+        // if either is falsy, "", produce
+        // Sweet alert for no input
+            Swal.fire({
+                title: 'Please search a book.',
+                confirmButtonColor: "#CCCC97",
+            })
+    }
+
+    confirmSubmit = () => {
     // Setting state for the preloader
+
         this.setState({
             done: false
         })
@@ -288,13 +313,13 @@ componentDidMount(){
                             name="search"
                             aria-label="Search through site content"
                             title="Search by title or author"
-                            required
+                            
                             onChange={this.handleChange}
                             value={this.state.searchInput}>
                             </input>
 
                             <button type="submit">Search</button>
-
+                            
                         </form>
 
                     </div>
@@ -375,14 +400,14 @@ componentDidMount(){
                             </input>
 
                             <button type="submit">Create List</button>
-
+                            
                         </form>
                         
                         <div className="list-background">
                             <ul>
                         
- 
-                               
+
+
                                 {this.state.createList.map(list => {
                                     
                                     return (
@@ -404,9 +429,9 @@ componentDidMount(){
                                                     </div>
                                                   )
                                                     
-                                              })}
-                                          
-                                          </ul>
+                                                })}
+                                        
+                                            </ul>
                                         : null}
 
                                            
